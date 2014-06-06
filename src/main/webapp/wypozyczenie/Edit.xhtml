@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WypozyczenieEditDlg" widgetVar="WypozyczenieEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditWypozyczenieTitle}">
+            <h:form id="WypozyczenieEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wypozyczenieController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_idWypozyczenie}" for="idWypozyczenie" />
+                        <p:inputText id="idWypozyczenie" value="#{wypozyczenieController.selected.idWypozyczenie}" title="#{bundle.EditWypozyczenieTitle_idWypozyczenie}" required="true" requiredMessage="#{bundle.EditWypozyczenieRequiredMessage_idWypozyczenie}"/>
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_dataWypozyczenia}" for="dataWypozyczenia" />
+                        <p:calendar id="dataWypozyczenia" pattern="MM/dd/yyyy" value="#{wypozyczenieController.selected.dataWypozyczenia}" title="#{bundle.EditWypozyczenieTitle_dataWypozyczenia}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_dataZwrotu}" for="dataZwrotu" />
+                        <p:calendar id="dataZwrotu" pattern="MM/dd/yyyy" value="#{wypozyczenieController.selected.dataZwrotu}" title="#{bundle.EditWypozyczenieTitle_dataZwrotu}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_kosztCalkowity}" for="kosztCalkowity" />
+                        <p:inputText id="kosztCalkowity" value="#{wypozyczenieController.selected.kosztCalkowity}" title="#{bundle.EditWypozyczenieTitle_kosztCalkowity}" />
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{wypozyczenieController.selected.status}" title="#{bundle.EditWypozyczenieTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_opis}" for="opis" />
+                        <p:inputText id="opis" value="#{wypozyczenieController.selected.opis}" title="#{bundle.EditWypozyczenieTitle_opis}" />
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_samochodId}" for="samochodId" />
+                        <p:selectOneMenu id="samochodId" value="#{wypozyczenieController.selected.samochodId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{samochodController.itemsAvailableSelectOne}"
+                                           var="samochodIdItem"
+                                           itemValue="#{samochodIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_pracownikId}" for="pracownikId" />
+                        <p:selectOneMenu id="pracownikId" value="#{wypozyczenieController.selected.pracownikId}" required="true" requiredMessage="#{bundle.EditWypozyczenieRequiredMessage_pracownikId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pracownikController.itemsAvailableSelectOne}"
+                                           var="pracownikIdItem"
+                                           itemValue="#{pracownikIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditWypozyczenieLabel_klientId}" for="klientId" />
+                        <p:selectOneMenu id="klientId" value="#{wypozyczenieController.selected.klientId}" required="true" requiredMessage="#{bundle.EditWypozyczenieRequiredMessage_klientId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{klientController.itemsAvailableSelectOne}"
+                                           var="klientIdItem"
+                                           itemValue="#{klientIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{wypozyczenieController.update}" value="#{bundle.Save}" update="display,:WypozyczenieListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WypozyczenieEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WypozyczenieEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

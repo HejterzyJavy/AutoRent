@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WypozyczenieViewDlg" widgetVar="WypozyczenieViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWypozyczenieTitle}">
+            <h:form id="WypozyczenieViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wypozyczenieController.selected != null}">
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_idWypozyczenie}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.idWypozyczenie}" title="#{bundle.ViewWypozyczenieTitle_idWypozyczenie}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_dataWypozyczenia}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.dataWypozyczenia}" title="#{bundle.ViewWypozyczenieTitle_dataWypozyczenia}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_dataZwrotu}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.dataZwrotu}" title="#{bundle.ViewWypozyczenieTitle_dataZwrotu}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_kosztCalkowity}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.kosztCalkowity}" title="#{bundle.ViewWypozyczenieTitle_kosztCalkowity}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_status}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.status}" title="#{bundle.ViewWypozyczenieTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_opis}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.opis}" title="#{bundle.ViewWypozyczenieTitle_opis}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_samochodId}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.samochodId}" title="#{bundle.ViewWypozyczenieTitle_samochodId}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_pracownikId}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.pracownikId}" title="#{bundle.ViewWypozyczenieTitle_pracownikId}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczenieLabel_klientId}"/>
+                        <h:outputText value="#{wypozyczenieController.selected.klientId}" title="#{bundle.ViewWypozyczenieTitle_klientId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WypozyczenieViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

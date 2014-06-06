@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="KlientEditDlg" widgetVar="KlientEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditKlientTitle}">
+            <h:form id="KlientEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{klientController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditKlientLabel_idKlient}" for="idKlient" />
+                        <p:inputText id="idKlient" value="#{klientController.selected.idKlient}" title="#{bundle.EditKlientTitle_idKlient}" required="true" requiredMessage="#{bundle.EditKlientRequiredMessage_idKlient}"/>
+                        <p:outputLabel value="#{bundle.EditKlientLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{klientController.selected.login}" title="#{bundle.EditKlientTitle_login}" required="true" requiredMessage="#{bundle.EditKlientRequiredMessage_login}"/>
+                        <p:outputLabel value="#{bundle.EditKlientLabel_haslo}" for="haslo" />
+                        <p:inputText id="haslo" value="#{klientController.selected.haslo}" title="#{bundle.EditKlientTitle_haslo}" required="true" requiredMessage="#{bundle.EditKlientRequiredMessage_haslo}"/>
+                        <p:outputLabel value="#{bundle.EditKlientLabel_doZaplaty}" for="doZaplaty" />
+                        <p:inputText id="doZaplaty" value="#{klientController.selected.doZaplaty}" title="#{bundle.EditKlientTitle_doZaplaty}" />
+                        <p:outputLabel value="#{bundle.EditKlientLabel_daneKontaktowe}" for="daneKontaktowe" />
+                        <p:selectOneMenu id="daneKontaktowe" value="#{klientController.selected.daneKontaktowe}" required="true" requiredMessage="#{bundle.EditKlientRequiredMessage_daneKontaktowe}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{daneKontaktoweController.itemsAvailableSelectOne}"
+                                           var="daneKontaktoweItem"
+                                           itemValue="#{daneKontaktoweItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{klientController.update}" value="#{bundle.Save}" update="display,:KlientListForm:datalist,:growl" oncomplete="handleSubmit(args, 'KlientEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="KlientEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

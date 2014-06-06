@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListWyposazenieTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="WyposazenieListForm">
+                <p:panel header="#{bundle.ListWyposazenieTitle}">
+                    <p:dataTable id="datalist" value="#{wyposazenieController.items}" var="item"
+                                 selectionMode="single" selection="#{wyposazenieController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idWyposazenie}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_idWyposazenie}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idWyposazenie}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_naped4x4}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.naped4x4}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_centralnyZamek}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.centralnyZamek}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_czujnikDeszczu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.czujnikDeszczu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_czujnikParkowania}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.czujnikParkowania}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_elektrLusterka}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.elektrLusterka}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_eleSzyby}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.eleSzyby}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_kilmatyzacja}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.kilmatyzacja}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_komputerPokladowy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.komputerPokladowy}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_podgrzPrzedSzyba}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.podgrzPrzedSzyba}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_podgrzFotele}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.podgrzFotele}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_radio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.radio}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_nawigacja}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nawigacja}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_skorzanaTapicerka}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.skorzanaTapicerka}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_tempomat}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tempomat}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_wspKierownicy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.wspKierownicy}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_autoAlarm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.autoAlarm}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_esp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.esp}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_poduszkiPowietrzne}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.poduszkiPowietrzne}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_aluFelgi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aluFelgi}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_dodatkowyBagaznik}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dodatkowyBagaznik}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_hak}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hak}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_ksenony}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ksenony}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_przycSzyby}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.przycSzyby}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_szyberDach}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.szyberDach}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_automatycznaSkrzynia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.automatycznaSkrzynia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_iloscMiejsc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iloscMiejsc}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_iloscPoduszek}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iloscPoduszek}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListWyposazenieTitle_samochod}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.samochod}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{wyposazenieController.prepareCreate}" update=":WyposazenieCreateForm" oncomplete="PF('WyposazenieCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":WyposazenieViewForm" oncomplete="PF('WyposazenieViewDialog').show()" disabled="#{empty wyposazenieController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":WyposazenieEditForm" oncomplete="PF('WyposazenieEditDialog').show()" disabled="#{empty wyposazenieController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{wyposazenieController.destroy}" update=":growl,datalist" disabled="#{empty wyposazenieController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

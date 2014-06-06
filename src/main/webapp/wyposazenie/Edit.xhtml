@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WyposazenieEditDlg" widgetVar="WyposazenieEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditWyposazenieTitle}">
+            <h:form id="WyposazenieEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wyposazenieController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_idWyposazenie}" for="idWyposazenie" />
+                        <p:inputText id="idWyposazenie" value="#{wyposazenieController.selected.idWyposazenie}" title="#{bundle.EditWyposazenieTitle_idWyposazenie}" required="true" requiredMessage="#{bundle.EditWyposazenieRequiredMessage_idWyposazenie}"/>
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_naped4x4}" for="naped4x4" />
+                        <p:inputText id="naped4x4" value="#{wyposazenieController.selected.naped4x4}" title="#{bundle.EditWyposazenieTitle_naped4x4}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_centralnyZamek}" for="centralnyZamek" />
+                        <p:inputText id="centralnyZamek" value="#{wyposazenieController.selected.centralnyZamek}" title="#{bundle.EditWyposazenieTitle_centralnyZamek}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_czujnikDeszczu}" for="czujnikDeszczu" />
+                        <p:inputText id="czujnikDeszczu" value="#{wyposazenieController.selected.czujnikDeszczu}" title="#{bundle.EditWyposazenieTitle_czujnikDeszczu}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_czujnikParkowania}" for="czujnikParkowania" />
+                        <p:inputText id="czujnikParkowania" value="#{wyposazenieController.selected.czujnikParkowania}" title="#{bundle.EditWyposazenieTitle_czujnikParkowania}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_elektrLusterka}" for="elektrLusterka" />
+                        <p:inputText id="elektrLusterka" value="#{wyposazenieController.selected.elektrLusterka}" title="#{bundle.EditWyposazenieTitle_elektrLusterka}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_eleSzyby}" for="eleSzyby" />
+                        <p:inputText id="eleSzyby" value="#{wyposazenieController.selected.eleSzyby}" title="#{bundle.EditWyposazenieTitle_eleSzyby}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_kilmatyzacja}" for="kilmatyzacja" />
+                        <p:inputText id="kilmatyzacja" value="#{wyposazenieController.selected.kilmatyzacja}" title="#{bundle.EditWyposazenieTitle_kilmatyzacja}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_komputerPokladowy}" for="komputerPokladowy" />
+                        <p:inputText id="komputerPokladowy" value="#{wyposazenieController.selected.komputerPokladowy}" title="#{bundle.EditWyposazenieTitle_komputerPokladowy}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_podgrzPrzedSzyba}" for="podgrzPrzedSzyba" />
+                        <p:inputText id="podgrzPrzedSzyba" value="#{wyposazenieController.selected.podgrzPrzedSzyba}" title="#{bundle.EditWyposazenieTitle_podgrzPrzedSzyba}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_podgrzFotele}" for="podgrzFotele" />
+                        <p:inputText id="podgrzFotele" value="#{wyposazenieController.selected.podgrzFotele}" title="#{bundle.EditWyposazenieTitle_podgrzFotele}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_radio}" for="radio" />
+                        <p:inputText id="radio" value="#{wyposazenieController.selected.radio}" title="#{bundle.EditWyposazenieTitle_radio}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_nawigacja}" for="nawigacja" />
+                        <p:inputText id="nawigacja" value="#{wyposazenieController.selected.nawigacja}" title="#{bundle.EditWyposazenieTitle_nawigacja}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_skorzanaTapicerka}" for="skorzanaTapicerka" />
+                        <p:inputText id="skorzanaTapicerka" value="#{wyposazenieController.selected.skorzanaTapicerka}" title="#{bundle.EditWyposazenieTitle_skorzanaTapicerka}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_tempomat}" for="tempomat" />
+                        <p:inputText id="tempomat" value="#{wyposazenieController.selected.tempomat}" title="#{bundle.EditWyposazenieTitle_tempomat}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_wspKierownicy}" for="wspKierownicy" />
+                        <p:inputText id="wspKierownicy" value="#{wyposazenieController.selected.wspKierownicy}" title="#{bundle.EditWyposazenieTitle_wspKierownicy}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_autoAlarm}" for="autoAlarm" />
+                        <p:inputText id="autoAlarm" value="#{wyposazenieController.selected.autoAlarm}" title="#{bundle.EditWyposazenieTitle_autoAlarm}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_esp}" for="esp" />
+                        <p:inputText id="esp" value="#{wyposazenieController.selected.esp}" title="#{bundle.EditWyposazenieTitle_esp}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_poduszkiPowietrzne}" for="poduszkiPowietrzne" />
+                        <p:inputText id="poduszkiPowietrzne" value="#{wyposazenieController.selected.poduszkiPowietrzne}" title="#{bundle.EditWyposazenieTitle_poduszkiPowietrzne}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_aluFelgi}" for="aluFelgi" />
+                        <p:inputText id="aluFelgi" value="#{wyposazenieController.selected.aluFelgi}" title="#{bundle.EditWyposazenieTitle_aluFelgi}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_dodatkowyBagaznik}" for="dodatkowyBagaznik" />
+                        <p:inputText id="dodatkowyBagaznik" value="#{wyposazenieController.selected.dodatkowyBagaznik}" title="#{bundle.EditWyposazenieTitle_dodatkowyBagaznik}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_hak}" for="hak" />
+                        <p:inputText id="hak" value="#{wyposazenieController.selected.hak}" title="#{bundle.EditWyposazenieTitle_hak}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_ksenony}" for="ksenony" />
+                        <p:inputText id="ksenony" value="#{wyposazenieController.selected.ksenony}" title="#{bundle.EditWyposazenieTitle_ksenony}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_przycSzyby}" for="przycSzyby" />
+                        <p:inputText id="przycSzyby" value="#{wyposazenieController.selected.przycSzyby}" title="#{bundle.EditWyposazenieTitle_przycSzyby}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_szyberDach}" for="szyberDach" />
+                        <p:inputText id="szyberDach" value="#{wyposazenieController.selected.szyberDach}" title="#{bundle.EditWyposazenieTitle_szyberDach}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_automatycznaSkrzynia}" for="automatycznaSkrzynia" />
+                        <p:inputText id="automatycznaSkrzynia" value="#{wyposazenieController.selected.automatycznaSkrzynia}" title="#{bundle.EditWyposazenieTitle_automatycznaSkrzynia}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_iloscMiejsc}" for="iloscMiejsc" />
+                        <p:inputText id="iloscMiejsc" value="#{wyposazenieController.selected.iloscMiejsc}" title="#{bundle.EditWyposazenieTitle_iloscMiejsc}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_iloscPoduszek}" for="iloscPoduszek" />
+                        <p:inputText id="iloscPoduszek" value="#{wyposazenieController.selected.iloscPoduszek}" title="#{bundle.EditWyposazenieTitle_iloscPoduszek}" />
+                        <p:outputLabel value="#{bundle.EditWyposazenieLabel_samochod}" for="samochod" />
+                        <p:selectOneMenu id="samochod" value="#{wyposazenieController.selected.samochod}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{samochodController.itemsAvailableSelectOne}"
+                                           var="samochodItem"
+                                           itemValue="#{samochodItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{wyposazenieController.update}" value="#{bundle.Save}" update="display,:WyposazenieListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WyposazenieEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WyposazenieEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

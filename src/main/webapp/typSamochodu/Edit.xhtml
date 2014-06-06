@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TypSamochoduEditDlg" widgetVar="TypSamochoduEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTypSamochoduTitle}">
+            <h:form id="TypSamochoduEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{typSamochoduController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTypSamochoduLabel_idTypSamochodu}" for="idTypSamochodu" />
+                        <p:inputText id="idTypSamochodu" value="#{typSamochoduController.selected.idTypSamochodu}" title="#{bundle.EditTypSamochoduTitle_idTypSamochodu}" required="true" requiredMessage="#{bundle.EditTypSamochoduRequiredMessage_idTypSamochodu}"/>
+                        <p:outputLabel value="#{bundle.EditTypSamochoduLabel_marka}" for="marka" />
+                        <p:inputText id="marka" value="#{typSamochoduController.selected.marka}" title="#{bundle.EditTypSamochoduTitle_marka}" />
+                        <p:outputLabel value="#{bundle.EditTypSamochoduLabel_model}" for="model" />
+                        <p:inputText id="model" value="#{typSamochoduController.selected.model}" title="#{bundle.EditTypSamochoduTitle_model}" />
+                        <p:outputLabel value="#{bundle.EditTypSamochoduLabel_rokProd}" for="rokProd" />
+                        <p:inputText id="rokProd" value="#{typSamochoduController.selected.rokProd}" title="#{bundle.EditTypSamochoduTitle_rokProd}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{typSamochoduController.update}" value="#{bundle.Save}" update="display,:TypSamochoduListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TypSamochoduEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TypSamochoduEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

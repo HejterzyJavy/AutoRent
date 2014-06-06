@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SamochodEditDlg" widgetVar="SamochodEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSamochodTitle}">
+            <h:form id="SamochodEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{samochodController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_idSamochod}" for="idSamochod" />
+                        <p:inputText id="idSamochod" value="#{samochodController.selected.idSamochod}" title="#{bundle.EditSamochodTitle_idSamochod}" required="true" requiredMessage="#{bundle.EditSamochodRequiredMessage_idSamochod}"/>
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_nrRejestracji}" for="nrRejestracji" />
+                        <p:inputText id="nrRejestracji" value="#{samochodController.selected.nrRejestracji}" title="#{bundle.EditSamochodTitle_nrRejestracji}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_przebieg}" for="przebieg" />
+                        <p:inputText id="przebieg" value="#{samochodController.selected.przebieg}" title="#{bundle.EditSamochodTitle_przebieg}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_dataNastPrzegladu}" for="dataNastPrzegladu" />
+                        <p:calendar id="dataNastPrzegladu" pattern="MM/dd/yyyy" value="#{samochodController.selected.dataNastPrzegladu}" title="#{bundle.EditSamochodTitle_dataNastPrzegladu}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_cenaDoba}" for="cenaDoba" />
+                        <p:inputText id="cenaDoba" value="#{samochodController.selected.cenaDoba}" title="#{bundle.EditSamochodTitle_cenaDoba}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{samochodController.selected.status}" title="#{bundle.EditSamochodTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_lokalizacja}" for="lokalizacja" />
+                        <p:inputText id="lokalizacja" value="#{samochodController.selected.lokalizacja}" title="#{bundle.EditSamochodTitle_lokalizacja}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_zdjecie}" for="zdjecie" />
+                        <p:inputTextarea rows="4" cols="30" id="zdjecie" value="#{samochodController.selected.zdjecie}" title="#{bundle.EditSamochodTitle_zdjecie}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_kolor}" for="kolor" />
+                        <p:inputText id="kolor" value="#{samochodController.selected.kolor}" title="#{bundle.EditSamochodTitle_kolor}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_predkoscMax}" for="predkoscMax" />
+                        <p:inputText id="predkoscMax" value="#{samochodController.selected.predkoscMax}" title="#{bundle.EditSamochodTitle_predkoscMax}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_typNadwozia}" for="typNadwozia" />
+                        <p:inputText id="typNadwozia" value="#{samochodController.selected.typNadwozia}" title="#{bundle.EditSamochodTitle_typNadwozia}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_rodzajPaliwa}" for="rodzajPaliwa" />
+                        <p:inputText id="rodzajPaliwa" value="#{samochodController.selected.rodzajPaliwa}" title="#{bundle.EditSamochodTitle_rodzajPaliwa}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_mocSilnika}" for="mocSilnika" />
+                        <p:inputText id="mocSilnika" value="#{samochodController.selected.mocSilnika}" title="#{bundle.EditSamochodTitle_mocSilnika}" />
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_wyposazenie}" for="wyposazenie" />
+                        <p:selectOneMenu id="wyposazenie" value="#{samochodController.selected.wyposazenie}" required="true" requiredMessage="#{bundle.EditSamochodRequiredMessage_wyposazenie}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{wyposazenieController.itemsAvailableSelectOne}"
+                                           var="wyposazenieItem"
+                                           itemValue="#{wyposazenieItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_typSamochoduId}" for="typSamochoduId" />
+                        <p:selectOneMenu id="typSamochoduId" value="#{samochodController.selected.typSamochoduId}" required="true" requiredMessage="#{bundle.EditSamochodRequiredMessage_typSamochoduId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{typSamochoduController.itemsAvailableSelectOne}"
+                                           var="typSamochoduIdItem"
+                                           itemValue="#{typSamochoduIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSamochodLabel_oddzialId}" for="oddzialId" />
+                        <p:selectOneMenu id="oddzialId" value="#{samochodController.selected.oddzialId}" required="true" requiredMessage="#{bundle.EditSamochodRequiredMessage_oddzialId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{oddzialController.itemsAvailableSelectOne}"
+                                           var="oddzialIdItem"
+                                           itemValue="#{oddzialIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{samochodController.update}" value="#{bundle.Save}" update="display,:SamochodListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SamochodEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SamochodEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

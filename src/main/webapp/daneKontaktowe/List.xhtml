@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDaneKontaktoweTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="DaneKontaktoweListForm">
+                <p:panel header="#{bundle.ListDaneKontaktoweTitle}">
+                    <p:dataTable id="datalist" value="#{daneKontaktoweController.items}" var="item"
+                                 selectionMode="single" selection="#{daneKontaktoweController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idDaneKontaktowe}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_idDaneKontaktowe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDaneKontaktowe}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_adres}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adres}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_kodPocztowy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.kodPocztowy}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_telefon}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefon}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_imie}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.imie}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_nazwisko}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nazwisko}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_pesel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesel}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_dataRej}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataRej}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_pracownik}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pracownik}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDaneKontaktoweTitle_klient}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.klient}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{daneKontaktoweController.prepareCreate}" update=":DaneKontaktoweCreateForm" oncomplete="PF('DaneKontaktoweCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DaneKontaktoweViewForm" oncomplete="PF('DaneKontaktoweViewDialog').show()" disabled="#{empty daneKontaktoweController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DaneKontaktoweEditForm" oncomplete="PF('DaneKontaktoweEditDialog').show()" disabled="#{empty daneKontaktoweController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{daneKontaktoweController.destroy}" update=":growl,datalist" disabled="#{empty daneKontaktoweController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

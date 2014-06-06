@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DaneKontaktoweEditDlg" widgetVar="DaneKontaktoweEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDaneKontaktoweTitle}">
+            <h:form id="DaneKontaktoweEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{daneKontaktoweController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_idDaneKontaktowe}" for="idDaneKontaktowe" />
+                        <p:inputText id="idDaneKontaktowe" value="#{daneKontaktoweController.selected.idDaneKontaktowe}" title="#{bundle.EditDaneKontaktoweTitle_idDaneKontaktowe}" required="true" requiredMessage="#{bundle.EditDaneKontaktoweRequiredMessage_idDaneKontaktowe}"/>
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_adres}" for="adres" />
+                        <p:inputText id="adres" value="#{daneKontaktoweController.selected.adres}" title="#{bundle.EditDaneKontaktoweTitle_adres}" />
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_kodPocztowy}" for="kodPocztowy" />
+                        <p:inputText id="kodPocztowy" value="#{daneKontaktoweController.selected.kodPocztowy}" title="#{bundle.EditDaneKontaktoweTitle_kodPocztowy}" />
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_telefon}" for="telefon" />
+                        <p:inputText id="telefon" value="#{daneKontaktoweController.selected.telefon}" title="#{bundle.EditDaneKontaktoweTitle_telefon}" />
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_imie}" for="imie" />
+                        <p:inputText id="imie" value="#{daneKontaktoweController.selected.imie}" title="#{bundle.EditDaneKontaktoweTitle_imie}" />
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_nazwisko}" for="nazwisko" />
+                        <p:inputText id="nazwisko" value="#{daneKontaktoweController.selected.nazwisko}" title="#{bundle.EditDaneKontaktoweTitle_nazwisko}" />
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_pesel}" for="pesel" />
+                        <p:inputText id="pesel" value="#{daneKontaktoweController.selected.pesel}" title="#{bundle.EditDaneKontaktoweTitle_pesel}" />
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_dataRej}" for="dataRej" />
+                        <p:calendar id="dataRej" pattern="MM/dd/yyyy" value="#{daneKontaktoweController.selected.dataRej}" title="#{bundle.EditDaneKontaktoweTitle_dataRej}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{daneKontaktoweController.selected.email}" title="#{bundle.EditDaneKontaktoweTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_pracownik}" for="pracownik" />
+                        <p:selectOneMenu id="pracownik" value="#{daneKontaktoweController.selected.pracownik}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pracownikController.itemsAvailableSelectOne}"
+                                           var="pracownikItem"
+                                           itemValue="#{pracownikItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditDaneKontaktoweLabel_klient}" for="klient" />
+                        <p:selectOneMenu id="klient" value="#{daneKontaktoweController.selected.klient}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{klientController.itemsAvailableSelectOne}"
+                                           var="klientItem"
+                                           itemValue="#{klientItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{daneKontaktoweController.update}" value="#{bundle.Save}" update="display,:DaneKontaktoweListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DaneKontaktoweEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DaneKontaktoweEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

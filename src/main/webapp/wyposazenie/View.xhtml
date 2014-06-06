@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WyposazenieViewDlg" widgetVar="WyposazenieViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWyposazenieTitle}">
+            <h:form id="WyposazenieViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wyposazenieController.selected != null}">
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_idWyposazenie}"/>
+                        <h:outputText value="#{wyposazenieController.selected.idWyposazenie}" title="#{bundle.ViewWyposazenieTitle_idWyposazenie}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_naped4x4}"/>
+                        <h:outputText value="#{wyposazenieController.selected.naped4x4}" title="#{bundle.ViewWyposazenieTitle_naped4x4}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_centralnyZamek}"/>
+                        <h:outputText value="#{wyposazenieController.selected.centralnyZamek}" title="#{bundle.ViewWyposazenieTitle_centralnyZamek}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_czujnikDeszczu}"/>
+                        <h:outputText value="#{wyposazenieController.selected.czujnikDeszczu}" title="#{bundle.ViewWyposazenieTitle_czujnikDeszczu}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_czujnikParkowania}"/>
+                        <h:outputText value="#{wyposazenieController.selected.czujnikParkowania}" title="#{bundle.ViewWyposazenieTitle_czujnikParkowania}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_elektrLusterka}"/>
+                        <h:outputText value="#{wyposazenieController.selected.elektrLusterka}" title="#{bundle.ViewWyposazenieTitle_elektrLusterka}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_eleSzyby}"/>
+                        <h:outputText value="#{wyposazenieController.selected.eleSzyby}" title="#{bundle.ViewWyposazenieTitle_eleSzyby}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_kilmatyzacja}"/>
+                        <h:outputText value="#{wyposazenieController.selected.kilmatyzacja}" title="#{bundle.ViewWyposazenieTitle_kilmatyzacja}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_komputerPokladowy}"/>
+                        <h:outputText value="#{wyposazenieController.selected.komputerPokladowy}" title="#{bundle.ViewWyposazenieTitle_komputerPokladowy}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_podgrzPrzedSzyba}"/>
+                        <h:outputText value="#{wyposazenieController.selected.podgrzPrzedSzyba}" title="#{bundle.ViewWyposazenieTitle_podgrzPrzedSzyba}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_podgrzFotele}"/>
+                        <h:outputText value="#{wyposazenieController.selected.podgrzFotele}" title="#{bundle.ViewWyposazenieTitle_podgrzFotele}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_radio}"/>
+                        <h:outputText value="#{wyposazenieController.selected.radio}" title="#{bundle.ViewWyposazenieTitle_radio}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_nawigacja}"/>
+                        <h:outputText value="#{wyposazenieController.selected.nawigacja}" title="#{bundle.ViewWyposazenieTitle_nawigacja}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_skorzanaTapicerka}"/>
+                        <h:outputText value="#{wyposazenieController.selected.skorzanaTapicerka}" title="#{bundle.ViewWyposazenieTitle_skorzanaTapicerka}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_tempomat}"/>
+                        <h:outputText value="#{wyposazenieController.selected.tempomat}" title="#{bundle.ViewWyposazenieTitle_tempomat}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_wspKierownicy}"/>
+                        <h:outputText value="#{wyposazenieController.selected.wspKierownicy}" title="#{bundle.ViewWyposazenieTitle_wspKierownicy}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_autoAlarm}"/>
+                        <h:outputText value="#{wyposazenieController.selected.autoAlarm}" title="#{bundle.ViewWyposazenieTitle_autoAlarm}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_esp}"/>
+                        <h:outputText value="#{wyposazenieController.selected.esp}" title="#{bundle.ViewWyposazenieTitle_esp}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_poduszkiPowietrzne}"/>
+                        <h:outputText value="#{wyposazenieController.selected.poduszkiPowietrzne}" title="#{bundle.ViewWyposazenieTitle_poduszkiPowietrzne}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_aluFelgi}"/>
+                        <h:outputText value="#{wyposazenieController.selected.aluFelgi}" title="#{bundle.ViewWyposazenieTitle_aluFelgi}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_dodatkowyBagaznik}"/>
+                        <h:outputText value="#{wyposazenieController.selected.dodatkowyBagaznik}" title="#{bundle.ViewWyposazenieTitle_dodatkowyBagaznik}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_hak}"/>
+                        <h:outputText value="#{wyposazenieController.selected.hak}" title="#{bundle.ViewWyposazenieTitle_hak}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_ksenony}"/>
+                        <h:outputText value="#{wyposazenieController.selected.ksenony}" title="#{bundle.ViewWyposazenieTitle_ksenony}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_przycSzyby}"/>
+                        <h:outputText value="#{wyposazenieController.selected.przycSzyby}" title="#{bundle.ViewWyposazenieTitle_przycSzyby}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_szyberDach}"/>
+                        <h:outputText value="#{wyposazenieController.selected.szyberDach}" title="#{bundle.ViewWyposazenieTitle_szyberDach}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_automatycznaSkrzynia}"/>
+                        <h:outputText value="#{wyposazenieController.selected.automatycznaSkrzynia}" title="#{bundle.ViewWyposazenieTitle_automatycznaSkrzynia}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_iloscMiejsc}"/>
+                        <h:outputText value="#{wyposazenieController.selected.iloscMiejsc}" title="#{bundle.ViewWyposazenieTitle_iloscMiejsc}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_iloscPoduszek}"/>
+                        <h:outputText value="#{wyposazenieController.selected.iloscPoduszek}" title="#{bundle.ViewWyposazenieTitle_iloscPoduszek}"/>
+                        <h:outputText value="#{bundle.ViewWyposazenieLabel_samochod}"/>
+                        <h:outputText value="#{wyposazenieController.selected.samochod}" title="#{bundle.ViewWyposazenieTitle_samochod}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WyposazenieViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

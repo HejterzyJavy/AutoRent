@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PracownikCreateDlg" widgetVar="PracownikCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePracownikTitle}">
+            <h:form id="PracownikCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pracownikController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_idPracownik}" for="idPracownik" />
+                        <p:inputText id="idPracownik" value="#{pracownikController.selected.idPracownik}" title="#{bundle.CreatePracownikTitle_idPracownik}" required="true" requiredMessage="#{bundle.CreatePracownikRequiredMessage_idPracownik}"/>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{pracownikController.selected.login}" title="#{bundle.CreatePracownikTitle_login}" required="true" requiredMessage="#{bundle.CreatePracownikRequiredMessage_login}"/>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_haslo}" for="haslo" />
+                        <p:inputText id="haslo" value="#{pracownikController.selected.haslo}" title="#{bundle.CreatePracownikTitle_haslo}" required="true" requiredMessage="#{bundle.CreatePracownikRequiredMessage_haslo}"/>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_pensja}" for="pensja" />
+                        <p:inputText id="pensja" value="#{pracownikController.selected.pensja}" title="#{bundle.CreatePracownikTitle_pensja}" required="true" requiredMessage="#{bundle.CreatePracownikRequiredMessage_pensja}"/>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_dataZatrudnienia}" for="dataZatrudnienia" />
+                        <p:calendar id="dataZatrudnienia" pattern="MM/dd/yyyy" value="#{pracownikController.selected.dataZatrudnienia}" title="#{bundle.EditPracownikTitle_dataZatrudnienia}" required="true" requiredMessage="#{bundle.EditPracownikRequiredMessage_dataZatrudnienia}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_dataWygUmowy}" for="dataWygUmowy" />
+                        <p:calendar id="dataWygUmowy" pattern="MM/dd/yyyy" value="#{pracownikController.selected.dataWygUmowy}" title="#{bundle.EditPracownikTitle_dataWygUmowy}" required="true" requiredMessage="#{bundle.EditPracownikRequiredMessage_dataWygUmowy}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_stanowisko}" for="stanowisko" />
+                        <p:inputText id="stanowisko" value="#{pracownikController.selected.stanowisko}" title="#{bundle.CreatePracownikTitle_stanowisko}" required="true" requiredMessage="#{bundle.CreatePracownikRequiredMessage_stanowisko}"/>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_oddzialId}" for="oddzialId" />
+                        <p:selectOneMenu id="oddzialId" value="#{pracownikController.selected.oddzialId}" required="true" requiredMessage="#{bundle.EditPracownikRequiredMessage_oddzialId}">
+                            <f:selectItems value="#{oddzialController.itemsAvailableSelectOne}"
+                                           var="oddzialIdItem"
+                                           itemValue="#{oddzialIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePracownikLabel_daneKontaktowe}" for="daneKontaktowe" />
+                        <p:selectOneMenu id="daneKontaktowe" value="#{pracownikController.selected.daneKontaktowe}" required="true" requiredMessage="#{bundle.EditPracownikRequiredMessage_daneKontaktowe}">
+                            <f:selectItems value="#{daneKontaktoweController.itemsAvailableSelectOne}"
+                                           var="daneKontaktoweItem"
+                                           itemValue="#{daneKontaktoweItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pracownikController.create}" value="#{bundle.Save}" update="display,:PracownikListForm:datalist,:growl" oncomplete="handleSubmit(args,'PracownikCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PracownikCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

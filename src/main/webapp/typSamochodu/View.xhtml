@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TypSamochoduViewDlg" widgetVar="TypSamochoduViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTypSamochoduTitle}">
+            <h:form id="TypSamochoduViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{typSamochoduController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTypSamochoduLabel_idTypSamochodu}"/>
+                        <h:outputText value="#{typSamochoduController.selected.idTypSamochodu}" title="#{bundle.ViewTypSamochoduTitle_idTypSamochodu}"/>
+                        <h:outputText value="#{bundle.ViewTypSamochoduLabel_marka}"/>
+                        <h:outputText value="#{typSamochoduController.selected.marka}" title="#{bundle.ViewTypSamochoduTitle_marka}"/>
+                        <h:outputText value="#{bundle.ViewTypSamochoduLabel_model}"/>
+                        <h:outputText value="#{typSamochoduController.selected.model}" title="#{bundle.ViewTypSamochoduTitle_model}"/>
+                        <h:outputText value="#{bundle.ViewTypSamochoduLabel_rokProd}"/>
+                        <h:outputText value="#{typSamochoduController.selected.rokProd}" title="#{bundle.ViewTypSamochoduTitle_rokProd}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TypSamochoduViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

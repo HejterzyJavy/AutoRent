@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SamochodViewDlg" widgetVar="SamochodViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSamochodTitle}">
+            <h:form id="SamochodViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{samochodController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSamochodLabel_idSamochod}"/>
+                        <h:outputText value="#{samochodController.selected.idSamochod}" title="#{bundle.ViewSamochodTitle_idSamochod}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_nrRejestracji}"/>
+                        <h:outputText value="#{samochodController.selected.nrRejestracji}" title="#{bundle.ViewSamochodTitle_nrRejestracji}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_przebieg}"/>
+                        <h:outputText value="#{samochodController.selected.przebieg}" title="#{bundle.ViewSamochodTitle_przebieg}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_dataNastPrzegladu}"/>
+                        <h:outputText value="#{samochodController.selected.dataNastPrzegladu}" title="#{bundle.ViewSamochodTitle_dataNastPrzegladu}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_cenaDoba}"/>
+                        <h:outputText value="#{samochodController.selected.cenaDoba}" title="#{bundle.ViewSamochodTitle_cenaDoba}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_status}"/>
+                        <h:outputText value="#{samochodController.selected.status}" title="#{bundle.ViewSamochodTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_lokalizacja}"/>
+                        <h:outputText value="#{samochodController.selected.lokalizacja}" title="#{bundle.ViewSamochodTitle_lokalizacja}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_zdjecie}"/>
+                        <h:outputText value="#{samochodController.selected.zdjecie}" title="#{bundle.ViewSamochodTitle_zdjecie}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_kolor}"/>
+                        <h:outputText value="#{samochodController.selected.kolor}" title="#{bundle.ViewSamochodTitle_kolor}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_predkoscMax}"/>
+                        <h:outputText value="#{samochodController.selected.predkoscMax}" title="#{bundle.ViewSamochodTitle_predkoscMax}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_typNadwozia}"/>
+                        <h:outputText value="#{samochodController.selected.typNadwozia}" title="#{bundle.ViewSamochodTitle_typNadwozia}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_rodzajPaliwa}"/>
+                        <h:outputText value="#{samochodController.selected.rodzajPaliwa}" title="#{bundle.ViewSamochodTitle_rodzajPaliwa}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_mocSilnika}"/>
+                        <h:outputText value="#{samochodController.selected.mocSilnika}" title="#{bundle.ViewSamochodTitle_mocSilnika}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_wyposazenie}"/>
+                        <h:outputText value="#{samochodController.selected.wyposazenie}" title="#{bundle.ViewSamochodTitle_wyposazenie}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_typSamochoduId}"/>
+                        <h:outputText value="#{samochodController.selected.typSamochoduId}" title="#{bundle.ViewSamochodTitle_typSamochoduId}"/>
+                        <h:outputText value="#{bundle.ViewSamochodLabel_oddzialId}"/>
+                        <h:outputText value="#{samochodController.selected.oddzialId}" title="#{bundle.ViewSamochodTitle_oddzialId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SamochodViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

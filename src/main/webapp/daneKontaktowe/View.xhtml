@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DaneKontaktoweViewDlg" widgetVar="DaneKontaktoweViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDaneKontaktoweTitle}">
+            <h:form id="DaneKontaktoweViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{daneKontaktoweController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_idDaneKontaktowe}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.idDaneKontaktowe}" title="#{bundle.ViewDaneKontaktoweTitle_idDaneKontaktowe}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_adres}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.adres}" title="#{bundle.ViewDaneKontaktoweTitle_adres}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_kodPocztowy}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.kodPocztowy}" title="#{bundle.ViewDaneKontaktoweTitle_kodPocztowy}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_telefon}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.telefon}" title="#{bundle.ViewDaneKontaktoweTitle_telefon}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_imie}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.imie}" title="#{bundle.ViewDaneKontaktoweTitle_imie}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_nazwisko}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.nazwisko}" title="#{bundle.ViewDaneKontaktoweTitle_nazwisko}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_pesel}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.pesel}" title="#{bundle.ViewDaneKontaktoweTitle_pesel}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_dataRej}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.dataRej}" title="#{bundle.ViewDaneKontaktoweTitle_dataRej}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_email}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.email}" title="#{bundle.ViewDaneKontaktoweTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_pracownik}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.pracownik}" title="#{bundle.ViewDaneKontaktoweTitle_pracownik}"/>
+                        <h:outputText value="#{bundle.ViewDaneKontaktoweLabel_klient}"/>
+                        <h:outputText value="#{daneKontaktoweController.selected.klient}" title="#{bundle.ViewDaneKontaktoweTitle_klient}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DaneKontaktoweViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
