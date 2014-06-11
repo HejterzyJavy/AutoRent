@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template/szablon.xhtml">
+
+            <ui:define name="content">
+                <div class='linia'> </div>
+                <div id="srodekNaglowek">
+                    <div id="srodekZnacznik"> </div>
+                    <p>Tresc</p>
+                </div>
+                <div class='linia'> </div>
+                <div id="srodekTresc">
+
+                    <h:form id="form">
+                        <p:dataGrid var="car" value="#{samochodController.items}" columns="3"
+                                    rows="12" paginator="true" id="cars"
+                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="6,12,16">
+
+                            <f:facet name="header">
+                                Dostępne Samochody
+                            </f:facet>
+
+                            <p:panel header="#{car.idSamochod}" style="text-align:center">
+                                <h:panelGrid columns="1" style="width:100%">
+                                    <p:graphicImage name="demo/images/car/#{car.typSamochoduId}.gif"/> 
+
+                                    <h:outputText value="#{car.typSamochoduId.marka}" />
+                                     <h:outputText value="#{car.typSamochoduId.model}" />
+
+                                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                                        <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                                        <f:setPropertyActionListener value="#{car}" target="#{samochodManagedBean.selectedCar}" />
+                                    </p:commandLink>
+                                </h:panelGrid>
+                            </p:panel>
+
+                        </p:dataGrid>
+
+                        <p:dialog header="Sczegóły" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty samochodManagedBean.selectedCar}" columnClasses="label,value">
+                    
+                                    <h:outputText value="Id:" />
+                                    <h:outputText value="#{samochodManagedBean.selectedCar.idSamochod}" />
+
+                                    <h:outputText value="Year" />
+                                    <h:outputText value="#{samochodManagedBean.selectedCar.typSamochoduId.rokProd}" />
+
+                                    <h:outputText value="Color:" />
+                                    <h:outputText value="#{samochodManagedBean.selectedCar.kolor}" style="color:#{samochodManagedBean.selectedCar.kolor}"/>
+
+                                    <h:outputText value="Price" />
+                                    <h:outputText value="$#{samochodManagedBean.selectedCar.cenaDoba}" />
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
