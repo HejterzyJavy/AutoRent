@@ -7,6 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
+        <p:growl id="growl" life="3000" />
 
         <ui:composition template="./../template/szablon.xhtml">
 
@@ -31,10 +32,10 @@
 
                             <p:panel header="#{car.idSamochod}" style="text-align:center">
                                 <h:panelGrid columns="1" style="width:100%">
-                                    <p:graphicImage name="demo/images/car/#{car.typSamochoduId}.gif"/> 
+                                    <!--<p:graphicImage name="demo/images/car/#{car.typSamochoduId}.gif"/>--> 
 
                                     <h:outputText value="#{car.typSamochoduId.marka}" />
-                                     <h:outputText value="#{car.typSamochoduId.model}" />
+                                    <h:outputText value="#{car.typSamochoduId.model}" />
 
                                     <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
                                         <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
@@ -42,13 +43,15 @@
                                     </p:commandLink>
                                 </h:panelGrid>
                             </p:panel>
-
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{samochodController.prepareCreate}" update=":SamochodCreateForm" oncomplete="PF('SamochodCreateDialog').show()"/>
+                            </f:facet>
                         </p:dataGrid>
 
                         <p:dialog header="Sczegóły" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="carDetail" style="text-align:center;">
                                 <p:panelGrid  columns="2" rendered="#{not empty samochodManagedBean.selectedCar}" columnClasses="label,value">
-                    
+
                                     <h:outputText value="Id:" />
                                     <h:outputText value="#{samochodManagedBean.selectedCar.idSamochod}" />
 
@@ -64,6 +67,144 @@
                             </p:outputPanel>
                         </p:dialog>
                     </h:form>
+                    <ui:composition>
+
+                        <p:dialog id="SamochodCreateDlg" widgetVar="SamochodCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSamochodTitle}">
+                            <h:form id="SamochodCreateForm">
+                                <h:panelGroup id="display">
+
+                                    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                                        <p:tab id="dane" title="Dane Samochodu">
+                                            <p:panel header="Dane">
+                                                <p:messages />
+                                                <h:panelGrid columns="2" columnClasses="label, value">
+                                                    <h:outputText value="idSamochodu: " />
+                                                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Firstname"/>
+
+                                                    <h:outputText value="nrRejestracji: " />
+                                                    <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
+
+                                                    <p:outputLabel for="dataNastPrzegladu" value="Data nast przegladu:" />
+                                                    <p:calendar id="dataNastPrzegladu" value="#{calendarView.date9}" pattern="dd-MM-yyyy" />
+
+                                                    <h:outputText value="Cena za dobe: " />
+                                                    <p:inputText value="#{userWizard.user.age}" />
+
+                                                    <p:outputLabel for="status" value="Dostepny:" />
+                                                    <p:selectOneMenu id="status" value="#{selectOneMenuView.console}">
+                                                        <f:selectItem itemLabel="Wybierz jedno:" itemValue="" />
+                                                        <f:selectItem itemLabel="Tak" itemValue="1" />
+                                                        <f:selectItem itemLabel="Nie" itemValue="0" />
+                                                    </p:selectOneMenu>
+
+                                                    <h:outputText value="Lokalizacja: " />
+                                                    <p:inputText value="#{userWizard.user.age}" />
+
+                                                </h:panelGrid>
+                                            </p:panel>
+
+                                            <p:panel header="Parametry">
+                                                <p:messages />
+                                                <h:panelGrid columns="3" columnClasses="label, value">
+
+                                                    <h:outputText value="Popup: " />
+                                                    <p:colorPicker value="#{colorView.colorPopup}" /> &nbsp;
+
+                                                
+                                                    <h:outputText value="Prędkość max: " />
+                                                    <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/> km/h
+
+                                                    <p:outputLabel for="typNadwozia" value="Typ Nadwozia:" />
+                                                    <p:selectOneMenu id="typNadwozia" value="#{selectOneMenuView.console}">
+                                                        <f:selectItem itemLabel="Wybierz jedno:" itemValue="" />
+                                                        <f:selectItem itemLabel="Coupe" itemValue="1" />
+                                                        <f:selectItem itemLabel="Fastback" itemValue="2" />
+                                                        <f:selectItem itemLabel="Hatchback" itemValue="3" />
+                                                        <f:selectItem itemLabel="Kombi" itemValue="4" />
+                                                        <f:selectItem itemLabel="Liftback" itemValue="5" />
+                                                        <f:selectItem itemLabel="Limuzyna" itemValue="6" />
+                                                        <f:selectItem itemLabel="Mikrovan" itemValue="7" />
+                                                        <f:selectItem itemLabel="Minivan" itemValue="8" />
+                                                        <f:selectItem itemLabel="Pick-up" itemValue="9" />
+                                                        <f:selectItem itemLabel="Roadster" itemValue="10" />
+                                                        <f:selectItem itemLabel="Sedan" itemValue="11" />
+                                                        <f:selectItem itemLabel="Van" itemValue="12" />
+                                                    </p:selectOneMenu>&nbsp;
+
+                                                    <h:outputText value="Moc silnika: " />
+                                                    <p:inputText value="#{userWizard.user.age}" />HP
+
+                                                    <p:outputLabel for="rodzajPaliwa" value="Rodzaj paliwa:" />
+                                                    <p:selectOneMenu id="rodzajPaliwa" value="#{selectOneMenuView.console}">
+                                                        <f:selectItem itemLabel="Wybierz jedno:" itemValue="" />
+                                                        <f:selectItem itemLabel="Benzyna" itemValue="Benzyna" />
+                                                        <f:selectItem itemLabel="Olej napędowy" itemValue="Olejnapedowy" />
+                                                        <f:selectItem itemLabel="LPG" itemValue="LPG" />
+                                                    </p:selectOneMenu>&nbsp;
+
+                                                    <h:outputText value="Przebieg: " />
+                                                    <p:inputText value="#{userWizard.user.age}" />km
+
+                                                </h:panelGrid>
+                                            </p:panel>
+
+                                        </p:tab>
+
+
+                                        <p:tab id="wyposazenie" title="Wyposazenie">
+                                            <p:panel header="Wyposazenie Samochodu">
+                                                <p:messages />
+                                                <h:panelGrid columns="2" columnClasses="label, value">
+
+                                                </h:panelGrid>
+                                            </p:panel>
+                                        </p:tab>
+
+                                        <p:tab id="zdjecie" title="Zdjecie">
+                                            <p:panel header="Zdjecie Samochodu">
+                                                <p:messages />
+                                                <h:panelGrid columns="2" columnClasses="label, value">
+                                                    <h:outputText value="Email: *" />
+                                                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+
+                                                </h:panelGrid>
+                                            </p:panel>
+                                        </p:tab>
+
+                                        <p:tab id="confirm" title="Confirmation">
+                                            <p:panel header="Confirmation">
+                                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+
+                                                </h:panelGrid>
+
+                                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+                                            </p:panel>
+                                        </p:tab>
+                                    </p:wizard>
+                                    <p:commandButton actionListener="#{samochodController.create}" value="#{bundle.Save}" update="display,:form:cars,:growl" oncomplete="handleSubmit(args,'SamochodCreateDialog');"/>
+                                    <p:commandButton value="#{bundle.Cancel}" onclick="SamochodCreateDialog.hide()"/>
+                                </h:panelGroup>
+                            </h:form>
+                        </p:dialog>
+
+                        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                            <p:panelGrid id="display2" columns="2" columnClasses="label,value">
+                                <h:outputText value="Mask:" />
+                                <h:outputText value="#{calendarView.date9}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:panelGrid>
+                        </p:dialog>
+                                                           
+                                <p:dialog modal="true" widgetVar="dlg" showEffect="fade" hideEffect="fade" header="Selected Colors" resizable="false">
+                                        <h:panelGrid id="grid" columns="2" cellpadding="5">                                                                                
+                                               <h:outputText value="Popup color: " />
+                                                <h:outputText value="#{colorView.colorPopup}" style="background-color: \##{colorView.colorPopup}" />
+                                            </h:panelGrid>
+                                  </p:dialog> 
+                   
+
+                    </ui:composition>
 
                 </div>
             </ui:define>
