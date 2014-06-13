@@ -5,7 +5,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
+    <h:head>
+        <script src="http://maps.google.com/maps/api/js?sensor=true|false" type="text/javascript"></script>
+    </h:head>
     <body>
         <p:growl id="growl" life="3000" />
 
@@ -73,49 +75,51 @@
                             <h:form id="SamochodCreateForm">
                                 <h:panelGroup id="display">
 
-                                    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                                    <p:wizard flowListener="#{addSamochodWizard.onFlowProcess}">
                                         <p:tab id="dane" title="Dane Samochodu">
+                                            <p:messages />
+
                                             <p:panel header="Dane">
-                                                <p:messages />
+
                                                 <h:panelGrid columns="2" columnClasses="label, value">
                                                     <h:outputText value="idSamochodu: " />
-                                                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Firstname"/>
+                                                    <p:inputText value="#{samochodController.selected.idSamochod}" required="true" label="Id Samochodu"/>
 
                                                     <h:outputText value="nrRejestracji: " />
-                                                    <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
+                                                    <p:inputText value="#{samochodController.selected.nrRejestracji}" required="true" label="nr Rejestracji"/>
 
-                                                    <p:outputLabel for="dataNastPrzegladu" value="Data nast przegladu:" />
-                                                    <p:calendar id="dataNastPrzegladu" value="#{calendarView.date9}" pattern="dd-MM-yyyy" />
+                                                    <p:outputLabel for="dataNastPrzegladu" value="Data nast przegladu:"  />
+                                                    <p:calendar id="dataNastPrzegladu" label="Data nast przegladu" required="true" value="#{samochodController.selected.dataNastPrzegladu}" pattern="dd-MM-yyyy" />
 
                                                     <h:outputText value="Cena za dobe: " />
-                                                    <p:inputText value="#{userWizard.user.age}" />
+                                                    <p:inputText required="true" label="Cena za dobe" value="#{samochodController.selected.cenaDoba}" />
 
                                                     <p:outputLabel for="status" value="Dostepny:" />
-                                                    <p:selectOneMenu id="status" value="#{selectOneMenuView.console}">
+                                                    <p:selectOneMenu id="status" required="true" label="Dostepnosc" value="#{samochodController.selected.status}">
                                                         <f:selectItem itemLabel="Wybierz jedno:" itemValue="" />
                                                         <f:selectItem itemLabel="Tak" itemValue="1" />
                                                         <f:selectItem itemLabel="Nie" itemValue="0" />
                                                     </p:selectOneMenu>
 
                                                     <h:outputText value="Lokalizacja: " />
-                                                    <p:inputText value="#{userWizard.user.age}" />
+                                                    <p:inputText required="true" label="Lokalizacja" value="#{samochodController.selected.lokalizacja}" />
 
                                                 </h:panelGrid>
                                             </p:panel>
 
                                             <p:panel header="Parametry">
-                                                <p:messages />
+
                                                 <h:panelGrid columns="3" columnClasses="label, value">
 
-                                                    <h:outputText value="Popup: " />
-                                                    <p:colorPicker value="#{colorView.colorPopup}" /> &nbsp;
+                                                    <h:outputText value="Kolor: " />
+                                                    <p:colorPicker required="true"  value="#{samochodController.selected.kolor}" /> &nbsp;
 
-                                                
+
                                                     <h:outputText value="Prędkość max: " />
-                                                    <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/> km/h
+                                                    <p:inputText value="#{samochodController.selected.predkoscMax}" required="true" label="Predkosc Max"/> km/h
 
                                                     <p:outputLabel for="typNadwozia" value="Typ Nadwozia:" />
-                                                    <p:selectOneMenu id="typNadwozia" value="#{selectOneMenuView.console}">
+                                                    <p:selectOneMenu required="true" id="typNadwozia" value="#{samochodController.selected.typNadwozia}">
                                                         <f:selectItem itemLabel="Wybierz jedno:" itemValue="" />
                                                         <f:selectItem itemLabel="Coupe" itemValue="1" />
                                                         <f:selectItem itemLabel="Fastback" itemValue="2" />
@@ -132,10 +136,10 @@
                                                     </p:selectOneMenu>&nbsp;
 
                                                     <h:outputText value="Moc silnika: " />
-                                                    <p:inputText value="#{userWizard.user.age}" />HP
+                                                    <p:inputText required="true"  value="#{samochodController.selected.mocSilnika}" />HP
 
                                                     <p:outputLabel for="rodzajPaliwa" value="Rodzaj paliwa:" />
-                                                    <p:selectOneMenu id="rodzajPaliwa" value="#{selectOneMenuView.console}">
+                                                    <p:selectOneMenu required="true"  id="rodzajPaliwa" value="#{samochodController.selected.rodzajPaliwa}">
                                                         <f:selectItem itemLabel="Wybierz jedno:" itemValue="" />
                                                         <f:selectItem itemLabel="Benzyna" itemValue="Benzyna" />
                                                         <f:selectItem itemLabel="Olej napędowy" itemValue="Olejnapedowy" />
@@ -143,7 +147,7 @@
                                                     </p:selectOneMenu>&nbsp;
 
                                                     <h:outputText value="Przebieg: " />
-                                                    <p:inputText value="#{userWizard.user.age}" />km
+                                                    <p:inputText required="true"  value="#{samochodController.selected.przebieg}" />km
 
                                                 </h:panelGrid>
                                             </p:panel>
@@ -153,19 +157,109 @@
 
                                         <p:tab id="wyposazenie" title="Wyposazenie">
                                             <p:panel header="Wyposazenie Samochodu">
-                                                <p:messages />
-                                                <h:panelGrid columns="2" columnClasses="label, value">
+                                                <h:panelGrid  columns="6"  columnClasses="label, value">
+
+                                                    <h:outputText value="Naped 4x4: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.naped4x4}" />
+
+                                                    <h:outputText value="Centralny zamek: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.centralnyZamek}" />
+
+                                                    <h:outputText value="Czujnik deszczu: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.czujnikDeszczu}" />
+
+                                                    <h:outputText value="Czujnik parkowania: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.czujnikParkowania}" />
+
+                                                    <h:outputText value="Elektryczne lusterka: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.elektrLusterka}" />
+
+                                                    <h:outputText value="Elektryczne szyby: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.eleSzyby}" />
+
+                                                    <h:outputText value="Klimatyzacja: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.kilmatyzacja}" />
+
+                                                    <h:outputText value="Komputer pokładowy: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.komputerPokladowy}" />
+
+                                                    <h:outputText value="Podgrzewana przed. szyba: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.podgrzPrzedSzyba}" />
+
+                                                    <h:outputText value="Podgrzewane fotele: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.podgrzFotele}" />
+
+                                                    <h:outputText value="Radio: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.radio}" />
+
+                                                    <h:outputText value="Nawigacja: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.nawigacja}" />
+
+                                                    <h:outputText value="Skorzana tapicerka: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.skorzanaTapicerka}" />
+
+                                                    <h:outputText value="Tempomat: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.tempomat}" />
+
+                                                    <h:outputText value="Wspomaganie kierownicy: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.wspKierownicy}" />
+
+                                                    <h:outputText value="Auto alarm: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.autoAlarm}" />
+
+                                                    <h:outputText value="Esp: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.esp}" />
+
+                                                    <h:outputText value="Poduszki powietrzne: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.poduszkiPowietrzne}" />
+
+                                                    <h:outputText value="Alu felgi: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.aluFelgi}" />
+
+                                                    <h:outputText value="Dodatkowy bagaznik: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.dodatkowyBagaznik}" />
+
+                                                    <h:outputText value="Hak: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.hak}" />
+
+                                                    <h:outputText value="Ksenony: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.ksenony}" />
+
+                                                    <h:outputText value="Przyciemniane szyby: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.przycSzyby}" />
+
+                                                    <h:outputText value="Szyber dach: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.szyberDach}" />
+
+                                                    <h:outputText value="Automatyczna skrzynia biegow: " />
+                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.automatycznaSkrzynia}" />
+
+
 
                                                 </h:panelGrid>
                                             </p:panel>
+                                            <p:panel header="Dodatkowe">
+                                                <h:panelGrid  columns="3"  cellpadding="5" columnClasses="label, value">
+                                                    <h:outputText id="output" value="Ilosc miejsc:#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
+                                                    <h:inputHidden id="txt1" value="#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
+                                                    <p:slider for="txt1" display="output" minValue="1" maxValue="64" style="width: 100px" displayTemplate="Ilosc miejsc:{value}" />
+
+
+                                                    <h:outputText id="output2" value="Ilosc Poduszek:#{addSamochodWizard.wyposazenie.iloscPoduszek}" />
+                                                    <h:inputHidden id="txt2" value="#{addSamochodWizard.wyposazenie.iloscPoduszek}" />
+                                                    <p:slider for="txt2" display="output2" minValue="1" maxValue="64" style="width: 100px" displayTemplate="Ilosc Poduszek:{value}" />
+
+
+                                                </h:panelGrid>
+                                            </p:panel>
+
                                         </p:tab>
 
                                         <p:tab id="zdjecie" title="Zdjecie">
                                             <p:panel header="Zdjecie Samochodu">
                                                 <p:messages />
                                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                                    <h:outputText value="Email: *" />
-                                                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+                                         
 
                                                 </h:panelGrid>
                                             </p:panel>
@@ -195,14 +289,14 @@
                                 </h:outputText>
                             </p:panelGrid>
                         </p:dialog>
-                                                           
-                                <p:dialog modal="true" widgetVar="dlg" showEffect="fade" hideEffect="fade" header="Selected Colors" resizable="false">
-                                        <h:panelGrid id="grid" columns="2" cellpadding="5">                                                                                
-                                               <h:outputText value="Popup color: " />
-                                                <h:outputText value="#{colorView.colorPopup}" style="background-color: \##{colorView.colorPopup}" />
-                                            </h:panelGrid>
-                                  </p:dialog> 
-                   
+                                                       
+                            <p:dialog modal="true" widgetVar="dlg" showEffect="fade" hideEffect="fade" header="Selected Colors" resizable="false">
+                                    <h:panelGrid id="grid" columns="2" cellpadding="5">                                                                                
+                                           <h:outputText value="Popup color: " />
+                                            <h:outputText value="#{colorView.colorPopup}" style="background-color: \##{colorView.colorPopup}" />
+                                        </h:panelGrid>
+                              </p:dialog> 
+                        <!--<p:gmap center="22.381542, 22.122893" zoom="5" type="HYBRID" style="width:600px;height:400px" />-->
 
                     </ui:composition>
 

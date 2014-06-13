@@ -29,7 +29,6 @@ public class SamochodManagedBean implements Serializable {
     }
     
 
-    
     public Samochod getSelectedCar() {
         return selectedCar;
     }

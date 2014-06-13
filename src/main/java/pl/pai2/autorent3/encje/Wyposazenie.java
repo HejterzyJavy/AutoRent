@@ -65,55 +65,55 @@ public class Wyposazenie implements Serializable {
     @Column(name = "id_wyposazenie")
     private Integer idWyposazenie;
     @Column(name = "naped_4x4")
-    private Integer naped4x4;
+    private boolean naped4x4;
     @Column(name = "centralny_zamek")
-    private Integer centralnyZamek;
+    private boolean centralnyZamek;
     @Column(name = "czujnik_deszczu")
-    private Integer czujnikDeszczu;
+    private boolean czujnikDeszczu;
     @Column(name = "czujnik_parkowania")
-    private Integer czujnikParkowania;
+    private boolean czujnikParkowania;
     @Column(name = "elektr_lusterka")
-    private Integer elektrLusterka;
+    private boolean elektrLusterka;
     @Column(name = "eleSzyby")
-    private Integer eleSzyby;
+    private boolean eleSzyby;
     @Column(name = "kilmatyzacja")
-    private Integer kilmatyzacja;
+    private boolean kilmatyzacja;
     @Column(name = "komputer_pokladowy")
-    private Integer komputerPokladowy;
+    private boolean komputerPokladowy;
     @Column(name = "podgrz_przed_szyba")
-    private Integer podgrzPrzedSzyba;
+    private boolean podgrzPrzedSzyba;
     @Column(name = "podgrz_fotele")
-    private Integer podgrzFotele;
+    private boolean podgrzFotele;
     @Column(name = "radio")
-    private Integer radio;
+    private boolean radio;
     @Column(name = "nawigacja")
-    private Integer nawigacja;
+    private boolean nawigacja;
     @Column(name = "skorzana_tapicerka")
-    private Integer skorzanaTapicerka;
+    private boolean skorzanaTapicerka;
     @Column(name = "tempomat")
-    private Integer tempomat;
+    private boolean tempomat;
     @Column(name = "wsp_kierownicy")
-    private Integer wspKierownicy;
+    private boolean wspKierownicy;
     @Column(name = "auto_alarm")
-    private Integer autoAlarm;
+    private boolean autoAlarm;
     @Column(name = "esp")
-    private Integer esp;
+    private boolean esp;
     @Column(name = "poduszki_powietrzne")
-    private Integer poduszkiPowietrzne;
+    private boolean poduszkiPowietrzne;
     @Column(name = "aluFelgi")
-    private Integer aluFelgi;
+    private boolean aluFelgi;
     @Column(name = "dodatkowy_bagaznik")
-    private Integer dodatkowyBagaznik;
+    private boolean dodatkowyBagaznik;
     @Column(name = "hak")
-    private Integer hak;
+    private boolean hak;
     @Column(name = "ksenony")
-    private Integer ksenony;
+    private boolean ksenony;
     @Column(name = "przyc_szyby")
-    private Integer przycSzyby;
+    private boolean przycSzyby;
     @Column(name = "szyber_dach")
-    private Integer szyberDach;
+    private boolean szyberDach;
     @Column(name = "automatyczna_skrzynia")
-    private Integer automatycznaSkrzynia;
+    private boolean automatycznaSkrzynia;
     @Column(name = "ilosc_miejsc")
     private Integer iloscMiejsc;
     @Column(name = "ilosc_poduszek")
@@ -136,203 +136,203 @@ public class Wyposazenie implements Serializable {
         this.idWyposazenie = idWyposazenie;
     }
 
-    public Integer getNaped4x4() {
+    public boolean getNaped4x4() {
         return naped4x4;
     }
 
-    public void setNaped4x4(Integer naped4x4) {
+    public void setNaped4x4(boolean naped4x4) {
         this.naped4x4 = naped4x4;
     }
 
-    public Integer getCentralnyZamek() {
+    public boolean getCentralnyZamek() {
         return centralnyZamek;
     }
 
-    public void setCentralnyZamek(Integer centralnyZamek) {
+    public void setCentralnyZamek(boolean centralnyZamek) {
         this.centralnyZamek = centralnyZamek;
     }
 
-    public Integer getCzujnikDeszczu() {
+    public boolean getCzujnikDeszczu() {
         return czujnikDeszczu;
     }
 
-    public void setCzujnikDeszczu(Integer czujnikDeszczu) {
+    public void setCzujnikDeszczu(boolean czujnikDeszczu) {
         this.czujnikDeszczu = czujnikDeszczu;
     }
 
-    public Integer getCzujnikParkowania() {
+    public boolean getCzujnikParkowania() {
         return czujnikParkowania;
     }
 
-    public void setCzujnikParkowania(Integer czujnikParkowania) {
+    public void setCzujnikParkowania(boolean czujnikParkowania) {
         this.czujnikParkowania = czujnikParkowania;
     }
 
-    public Integer getElektrLusterka() {
+    public boolean getElektrLusterka() {
         return elektrLusterka;
     }
 
-    public void setElektrLusterka(Integer elektrLusterka) {
+    public void setElektrLusterka(boolean elektrLusterka) {
         this.elektrLusterka = elektrLusterka;
     }
 
-    public Integer getEleSzyby() {
+    public boolean getEleSzyby() {
         return eleSzyby;
     }
 
-    public void setEleSzyby(Integer eleSzyby) {
+    public void setEleSzyby(boolean eleSzyby) {
         this.eleSzyby = eleSzyby;
     }
 
-    public Integer getKilmatyzacja() {
+    public boolean getKilmatyzacja() {
         return kilmatyzacja;
     }
 
-    public void setKilmatyzacja(Integer kilmatyzacja) {
+    public void setKilmatyzacja(boolean kilmatyzacja) {
         this.kilmatyzacja = kilmatyzacja;
     }
 
-    public Integer getKomputerPokladowy() {
+    public boolean getKomputerPokladowy() {
         return komputerPokladowy;
     }
 
-    public void setKomputerPokladowy(Integer komputerPokladowy) {
+    public void setKomputerPokladowy(boolean komputerPokladowy) {
         this.komputerPokladowy = komputerPokladowy;
     }
 
-    public Integer getPodgrzPrzedSzyba() {
+    public boolean getPodgrzPrzedSzyba() {
         return podgrzPrzedSzyba;
     }
 
-    public void setPodgrzPrzedSzyba(Integer podgrzPrzedSzyba) {
+    public void setPodgrzPrzedSzyba(boolean podgrzPrzedSzyba) {
         this.podgrzPrzedSzyba = podgrzPrzedSzyba;
     }
 
-    public Integer getPodgrzFotele() {
+    public boolean getPodgrzFotele() {
         return podgrzFotele;
     }
 
-    public void setPodgrzFotele(Integer podgrzFotele) {
+    public void setPodgrzFotele(boolean podgrzFotele) {
         this.podgrzFotele = podgrzFotele;
     }
 
-    public Integer getRadio() {
+    public boolean getRadio() {
         return radio;
     }
 
-    public void setRadio(Integer radio) {
+    public void setRadio(boolean radio) {
         this.radio = radio;
     }
 
-    public Integer getNawigacja() {
+    public boolean getNawigacja() {
         return nawigacja;
     }
 
-    public void setNawigacja(Integer nawigacja) {
+    public void setNawigacja(boolean nawigacja) {
         this.nawigacja = nawigacja;
     }
 
-    public Integer getSkorzanaTapicerka() {
+    public boolean getSkorzanaTapicerka() {
         return skorzanaTapicerka;
     }
 
-    public void setSkorzanaTapicerka(Integer skorzanaTapicerka) {
+    public void setSkorzanaTapicerka(boolean skorzanaTapicerka) {
         this.skorzanaTapicerka = skorzanaTapicerka;
     }
 
-    public Integer getTempomat() {
+    public boolean getTempomat() {
         return tempomat;
     }
 
-    public void setTempomat(Integer tempomat) {
+    public void setTempomat(boolean tempomat) {
         this.tempomat = tempomat;
     }
 
-    public Integer getWspKierownicy() {
+    public boolean getWspKierownicy() {
         return wspKierownicy;
     }
 
-    public void setWspKierownicy(Integer wspKierownicy) {
+    public void setWspKierownicy(boolean wspKierownicy) {
         this.wspKierownicy = wspKierownicy;
     }
 
-    public Integer getAutoAlarm() {
+    public boolean getAutoAlarm() {
         return autoAlarm;
     }
 
-    public void setAutoAlarm(Integer autoAlarm) {
+    public void setAutoAlarm(boolean autoAlarm) {
         this.autoAlarm = autoAlarm;
     }
 
-    public Integer getEsp() {
+    public boolean getEsp() {
         return esp;
     }
 
-    public void setEsp(Integer esp) {
+    public void setEsp(boolean esp) {
         this.esp = esp;
     }
 
-    public Integer getPoduszkiPowietrzne() {
+    public boolean getPoduszkiPowietrzne() {
         return poduszkiPowietrzne;
     }
 
-    public void setPoduszkiPowietrzne(Integer poduszkiPowietrzne) {
+    public void setPoduszkiPowietrzne(boolean poduszkiPowietrzne) {
         this.poduszkiPowietrzne = poduszkiPowietrzne;
     }
 
-    public Integer getAluFelgi() {
+    public boolean getAluFelgi() {
         return aluFelgi;
     }
 
-    public void setAluFelgi(Integer aluFelgi) {
+    public void setAluFelgi(boolean aluFelgi) {
         this.aluFelgi = aluFelgi;
     }
 
-    public Integer getDodatkowyBagaznik() {
+    public boolean getDodatkowyBagaznik() {
         return dodatkowyBagaznik;
     }
 
-    public void setDodatkowyBagaznik(Integer dodatkowyBagaznik) {
+    public void setDodatkowyBagaznik(boolean dodatkowyBagaznik) {
         this.dodatkowyBagaznik = dodatkowyBagaznik;
     }
 
-    public Integer getHak() {
+    public boolean getHak() {
         return hak;
     }
 
-    public void setHak(Integer hak) {
+    public void setHak(boolean hak) {
         this.hak = hak;
     }
 
-    public Integer getKsenony() {
+    public boolean getKsenony() {
         return ksenony;
     }
 
-    public void setKsenony(Integer ksenony) {
+    public void setKsenony(boolean ksenony) {
         this.ksenony = ksenony;
     }
 
-    public Integer getPrzycSzyby() {
+    public boolean getPrzycSzyby() {
         return przycSzyby;
     }
 
-    public void setPrzycSzyby(Integer przycSzyby) {
+    public void setPrzycSzyby(boolean przycSzyby) {
         this.przycSzyby = przycSzyby;
     }
 
-    public Integer getSzyberDach() {
+    public boolean getSzyberDach() {
         return szyberDach;
     }
 
-    public void setSzyberDach(Integer szyberDach) {
+    public void setSzyberDach(boolean szyberDach) {
         this.szyberDach = szyberDach;
     }
 
-    public Integer getAutomatycznaSkrzynia() {
+    public boolean getAutomatycznaSkrzynia() {
         return automatycznaSkrzynia;
     }
 
-    public void setAutomatycznaSkrzynia(Integer automatycznaSkrzynia) {
+    public void setAutomatycznaSkrzynia(boolean automatycznaSkrzynia) {
         this.automatycznaSkrzynia = automatycznaSkrzynia;
     }
 
