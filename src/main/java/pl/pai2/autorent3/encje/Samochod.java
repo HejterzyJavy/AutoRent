@@ -268,4 +268,6 @@ public class Samochod implements Serializable {
         return "pl.pai2.autorent3.encje.Samochod[ idSamochod=" + idSamochod + " ]";
     }
     
+    
+    
 }

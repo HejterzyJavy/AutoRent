@@ -385,4 +385,8 @@ public class Wyposazenie implements Serializable {
         return "pl.pai2.autorent3.encje.Wyposazenie[ idWyposazenie=" + idWyposazenie + " ]";
     }
     
+     public boolean isNaped4x4() {
+        return naped4x4;
+    }
+    
 }

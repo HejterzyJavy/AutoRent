@@ -159,86 +159,14 @@
                                             <p:panel header="Wyposazenie Samochodu">
                                                 <h:panelGrid  columns="6"  columnClasses="label, value">
 
-                                                    <h:outputText value="Naped 4x4: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.naped4x4}" />
-
-                                                    <h:outputText value="Centralny zamek: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.centralnyZamek}" />
-
-                                                    <h:outputText value="Czujnik deszczu: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.czujnikDeszczu}" />
-
-                                                    <h:outputText value="Czujnik parkowania: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.czujnikParkowania}" />
-
-                                                    <h:outputText value="Elektryczne lusterka: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.elektrLusterka}" />
-
-                                                    <h:outputText value="Elektryczne szyby: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.eleSzyby}" />
-
-                                                    <h:outputText value="Klimatyzacja: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.kilmatyzacja}" />
-
-                                                    <h:outputText value="Komputer pokładowy: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.komputerPokladowy}" />
-
-                                                    <h:outputText value="Podgrzewana przed. szyba: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.podgrzPrzedSzyba}" />
-
-                                                    <h:outputText value="Podgrzewane fotele: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.podgrzFotele}" />
-
-                                                    <h:outputText value="Radio: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.radio}" />
-
-                                                    <h:outputText value="Nawigacja: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.nawigacja}" />
-
-                                                    <h:outputText value="Skorzana tapicerka: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.skorzanaTapicerka}" />
-
-                                                    <h:outputText value="Tempomat: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.tempomat}" />
-
-                                                    <h:outputText value="Wspomaganie kierownicy: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.wspKierownicy}" />
-
-                                                    <h:outputText value="Auto alarm: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.autoAlarm}" />
-
-                                                    <h:outputText value="Esp: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.esp}" />
-
-                                                    <h:outputText value="Poduszki powietrzne: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.poduszkiPowietrzne}" />
-
-                                                    <h:outputText value="Alu felgi: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.aluFelgi}" />
-
-                                                    <h:outputText value="Dodatkowy bagaznik: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.dodatkowyBagaznik}" />
-
-                                                    <h:outputText value="Hak: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.hak}" />
-
-                                                    <h:outputText value="Ksenony: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.ksenony}" />
-
-                                                    <h:outputText value="Przyciemniane szyby: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.przycSzyby}" />
-
-                                                    <h:outputText value="Szyber dach: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.szyberDach}" />
-
-                                                    <h:outputText value="Automatyczna skrzynia biegow: " />
-                                                    <p:selectBooleanCheckbox value="#{samochodController.selected.wyposazenie.automatycznaSkrzynia}" />
-
-
+                                                    <p:selectManyCheckbox id="grid2" value="#{addSamochodWizard.wybraneWyposazenie}" layout="grid" columns="3">
+                                                        <f:selectItems value="#{addSamochodWizard.elementy}" var="ele" itemLabel="#{ele}" itemValue="#{ele}" />
+                                                    </p:selectManyCheckbox>
 
                                                 </h:panelGrid>
+                                                
                                             </p:panel>
-                                            <p:panel header="Dodatkowe">
+                                             <p:panel header="Dodatkowe">
                                                 <h:panelGrid  columns="3"  cellpadding="5" columnClasses="label, value">
                                                     <h:outputText id="output" value="Ilosc miejsc:#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
                                                     <h:inputHidden id="txt1" value="#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
@@ -253,13 +181,14 @@
                                                 </h:panelGrid>
                                             </p:panel>
 
+
                                         </p:tab>
 
                                         <p:tab id="zdjecie" title="Zdjecie">
                                             <p:panel header="Zdjecie Samochodu">
                                                 <p:messages />
                                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                         
+
 
                                                 </h:panelGrid>
                                             </p:panel>
