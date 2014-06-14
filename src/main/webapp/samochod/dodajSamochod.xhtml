@@ -57,6 +57,7 @@
                                     <h:outputText value="Id:" />
                                     <h:outputText value="#{samochodManagedBean.selectedCar.idSamochod}" />
 
+
                                     <h:outputText value="Year" />
                                     <h:outputText value="#{samochodManagedBean.selectedCar.typSamochoduId.rokProd}" />
 
@@ -82,8 +83,9 @@
                                             <p:panel header="Dane">
 
                                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                                    <h:outputText value="idSamochodu: " />
-                                                    <p:inputText value="#{samochodController.selected.idSamochod}" required="true" label="Id Samochodu"/>
+
+
+                                                   
 
                                                     <h:outputText value="nrRejestracji: " />
                                                     <p:inputText value="#{samochodController.selected.nrRejestracji}" required="true" label="nr Rejestracji"/>
@@ -152,6 +154,24 @@
                                                 </h:panelGrid>
                                             </p:panel>
 
+                                            <p:panel header="Typ samochodu">
+
+                                                <h:panelGrid columns="2" columnClasses="label, value">
+                                                                                                                                            
+
+                                                    <h:outputText value="Marka: " />
+                                                    <p:inputText required="true"  value="#{samochodController.selected.typSamochoduId.marka}" /> 
+
+
+                                                    <h:outputText value="Model: " />
+                                                    <p:inputText required="true"  value="#{samochodController.selected.typSamochoduId.model}" />
+                                                    
+                                                    <h:outputText value="Rok produkcji " />
+                                                    <p:inputText required="true"  value="#{samochodController.selected.typSamochoduId.rokProd}" />
+
+                                                </h:panelGrid>
+                                            </p:panel>
+
                                         </p:tab>
 
 
@@ -164,9 +184,9 @@
                                                     </p:selectManyCheckbox>
 
                                                 </h:panelGrid>
-                                                
+
                                             </p:panel>
-                                             <p:panel header="Dodatkowe">
+                                            <p:panel header="Dodatkowe">
                                                 <h:panelGrid  columns="3"  cellpadding="5" columnClasses="label, value">
                                                     <h:outputText id="output" value="Ilosc miejsc:#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
                                                     <h:inputHidden id="txt1" value="#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
@@ -186,20 +206,21 @@
 
                                         <p:tab id="zdjecie" title="Zdjecie">
                                             <p:panel header="Zdjecie Samochodu">
-                                                <p:messages />
-                                                <h:panelGrid columns="2" columnClasses="label, value">
-                                                    
+                                                <h:form enctype="multipart/form-data">
+                                                    <p:fileUpload
+                                                        mode="advanced"
+                                                        fileUploadListener="#{samochodController.handleFileUpload}"
+                                                        allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                                        auto="true"/>
+                                                </h:form>
 
-                                                </h:panelGrid>
                                             </p:panel>
                                         </p:tab>
 
                                         <p:tab id="confirm" title="Confirmation">
                                             <p:panel header="Confirmation">
-                                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                                                </h:panelGrid>
-
-                                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+                                                <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                                                              update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
                                             </p:panel>
                                         </p:tab>
                                     </p:wizard>

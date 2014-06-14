@@ -1,21 +1,32 @@
 package pl.pai2.autorent3.encje;
 
-import pl.pai2.autorent3.encje.util.JsfUtil;
-import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
+import pl.pai2.autorent3.encje.util.JsfUtil;
+import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
 
 @Named("samochodController")
 @SessionScoped
@@ -49,6 +60,9 @@ public class SamochodController implements Serializable {
 
     public Samochod prepareCreate() {
         selected = new Samochod();
+        selected.setTypSamochoduId( new TypSamochodu());
+        selected.setWyposazenie(new Wyposazenie());
+        selected.setOddzialId(new Oddzial());
         initializeEmbeddableKey();
         return selected;
     }
@@ -118,6 +132,25 @@ public class SamochodController implements Serializable {
     public List<Samochod> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+     public void handleFileUpload(FileUploadEvent event) {
+        try {
+            InputStream inputStream = event.getFile().getInputstream();
+            
+            int read = 0;
+            byte[] bytes =  IOUtils.toByteArray(inputStream);
+            selected.setZdjecie(bytes);
+            inputStream.close();
+  
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+ 
+     
+    
+    
 
     @FacesConverter(forClass = Samochod.class)
     public static class SamochodControllerConverter implements Converter {

@@ -49,7 +49,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Samochod.findByPredkoscMax", query = "SELECT s FROM Samochod s WHERE s.predkoscMax = :predkoscMax"),
     @NamedQuery(name = "Samochod.findByTypNadwozia", query = "SELECT s FROM Samochod s WHERE s.typNadwozia = :typNadwozia"),
     @NamedQuery(name = "Samochod.findByRodzajPaliwa", query = "SELECT s FROM Samochod s WHERE s.rodzajPaliwa = :rodzajPaliwa"),
-    @NamedQuery(name = "Samochod.findByMocSilnika", query = "SELECT s FROM Samochod s WHERE s.mocSilnika = :mocSilnika")})
+    @NamedQuery(name = "Samochod.findByMocSilnika", query = "SELECT s FROM Samochod s WHERE s.mocSilnika = :mocSilnika")})  
+
 public class Samochod implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
