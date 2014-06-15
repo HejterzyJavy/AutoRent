@@ -54,7 +54,9 @@
                         <p:selectOneMenu id="oddzialId" value="#{samochodController.selected.oddzialId}" required="true" requiredMessage="#{bundle.EditSamochodRequiredMessage_oddzialId}">
                             <f:selectItems value="#{oddzialController.itemsAvailableSelectOne}"
                                            var="oddzialIdItem"
-                                           itemValue="#{oddzialIdItem}"/>
+                                           itemLabel="#{oddzialIdItem.nazwa}"
+                                           itemValue="#{oddzialIdItem}"
+                                           />
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{samochodController.create}" value="#{bundle.Save}" update="display,:SamochodListForm:datalist,:growl" oncomplete="handleSubmit(args,'SamochodCreateDialog');"/>

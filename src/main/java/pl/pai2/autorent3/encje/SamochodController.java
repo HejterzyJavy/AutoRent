@@ -1,14 +1,9 @@
 package pl.pai2.autorent3.encje;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,7 +13,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -26,7 +20,8 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import pl.pai2.autorent3.encje.util.JsfUtil;
 import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
 
@@ -113,7 +108,7 @@ public class SamochodController implements Serializable {
         selected = new Samochod();
         selected.setTypSamochoduId( new TypSamochodu());
         selected.setWyposazenie(new Wyposazenie());
-        selected.setOddzialId(new Oddzial());
+      //  selected.setOddzialId(new Oddzial());
         initializeEmbeddableKey();
         return selected;
     }
@@ -232,6 +227,9 @@ public class SamochodController implements Serializable {
   
          
      }
+        
+        
+        
      
    
      

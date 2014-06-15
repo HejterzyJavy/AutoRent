@@ -34,10 +34,12 @@
 
                             <p:panel header="#{car.idSamochod}" style="text-align:center">
                                 <h:panelGrid columns="1" style="width:100%">
-                                    <!--<p:graphicImage name="demo/images/car/#{car.typSamochoduId}.gif"/>--> 
+                                    <p:graphicImage  value="../../Zdjecie?id=#{car.idSamochod}"  />
 
                                     <h:outputText value="#{car.typSamochoduId.marka}" />
                                     <h:outputText value="#{car.typSamochoduId.model}" />
+                                    
+                                     <h:outputText  value="http://localhost:8080/autoRent3/Zdjecie?id=#{car.idSamochod}" />
 
                                     <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
                                         <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
@@ -85,7 +87,7 @@
                                                 <h:panelGrid columns="2" columnClasses="label, value">
 
 
-                                                   
+
 
                                                     <h:outputText value="nrRejestracji: " />
                                                     <p:inputText value="#{samochodController.selected.nrRejestracji}" required="true" label="nr Rejestracji"/>
@@ -105,6 +107,15 @@
 
                                                     <h:outputText value="Lokalizacja: " />
                                                     <p:inputText required="true" label="Lokalizacja" value="#{samochodController.selected.lokalizacja}" />
+                                                    
+                                                    <p:outputLabel value="Salon:" for="oddzialId" />
+                                                    <p:selectOneMenu id="oddzialId" value="#{samochodController.selected.oddzialId}" required="true" requiredMessage="#{bundle.EditSamochodRequiredMessage_oddzialId}">
+                                                        <f:selectItems value="#{oddzialController.itemsAvailableSelectOne}"
+                                                                       var="oddzialIdItem"
+                                                                       itemLabel="#{oddzialIdItem.nazwa} , #{oddzialIdItem.lokalizacja}"
+                                                                       itemValue="#{oddzialIdItem}"
+                                                                       />
+                                                    </p:selectOneMenu>
 
                                                 </h:panelGrid>
                                             </p:panel>
@@ -157,7 +168,7 @@
                                             <p:panel header="Typ samochodu">
 
                                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                                                                                                                            
+
 
                                                     <h:outputText value="Marka: " />
                                                     <p:inputText required="true"  value="#{samochodController.selected.typSamochoduId.marka}" /> 
@@ -165,7 +176,7 @@
 
                                                     <h:outputText value="Model: " />
                                                     <p:inputText required="true"  value="#{samochodController.selected.typSamochoduId.model}" />
-                                                    
+
                                                     <h:outputText value="Rok produkcji " />
                                                     <p:inputText required="true"  value="#{samochodController.selected.typSamochoduId.rokProd}" />
 

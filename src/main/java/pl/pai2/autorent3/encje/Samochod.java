@@ -6,6 +6,7 @@
 
 package pl.pai2.autorent3.encje;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -28,6 +29,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -166,6 +169,8 @@ public class Samochod implements Serializable {
     public byte[] getZdjecie() {
         return zdjecie;
     }
+    
+
 
     public void setZdjecie(byte[] zdjecie) {
         this.zdjecie = zdjecie;
