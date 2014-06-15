@@ -49,6 +49,7 @@ public class KlientController implements Serializable {
 
     public Klient prepareCreate() {
         selected = new Klient();
+        selected.setDaneKontaktowe(new DaneKontaktowe());
         initializeEmbeddableKey();
         return selected;
     }
