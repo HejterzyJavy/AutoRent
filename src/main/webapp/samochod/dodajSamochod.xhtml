@@ -179,8 +179,8 @@
                                             <p:panel header="Wyposazenie Samochodu">
                                                 <h:panelGrid  columns="6"  columnClasses="label, value">
 
-                                                    <p:selectManyCheckbox id="grid2" value="#{addSamochodWizard.wybraneWyposazenie}" layout="grid" columns="3">
-                                                        <f:selectItems value="#{addSamochodWizard.elementy}" var="ele" itemLabel="#{ele}" itemValue="#{ele}" />
+                                                    <p:selectManyCheckbox id="grid2" value="#{samochodController.wybraneWyposazenie}" layout="grid" columns="3" >
+                                                        <f:selectItems value="#{samochodController.elementy}" var="ele" itemLabel="#{ele}" itemValue="#{ele}" />
                                                     </p:selectManyCheckbox>
 
                                                 </h:panelGrid>
@@ -188,13 +188,13 @@
                                             </p:panel>
                                             <p:panel header="Dodatkowe">
                                                 <h:panelGrid  columns="3"  cellpadding="5" columnClasses="label, value">
-                                                    <h:outputText id="output" value="Ilosc miejsc:#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
-                                                    <h:inputHidden id="txt1" value="#{addSamochodWizard.wyposazenie.iloscMiejsc}" />
+                                                    <h:outputText id="output" value="Ilosc miejsc:#{samochodController.selected.wyposazenie.iloscMiejsc}" />
+                                                    <h:inputHidden id="txt1" value="#{samochodController.selected.wyposazenie.iloscMiejsc}" />
                                                     <p:slider for="txt1" display="output" minValue="1" maxValue="64" style="width: 100px" displayTemplate="Ilosc miejsc:{value}" />
 
 
-                                                    <h:outputText id="output2" value="Ilosc Poduszek:#{addSamochodWizard.wyposazenie.iloscPoduszek}" />
-                                                    <h:inputHidden id="txt2" value="#{addSamochodWizard.wyposazenie.iloscPoduszek}" />
+                                                    <h:outputText id="output2" value="Ilosc Poduszek:#{samochodController.selected.wyposazenie.iloscPoduszek}" />
+                                                    <h:inputHidden id="txt2" value="#{samochodController.selected.wyposazenie.iloscPoduszek}" />
                                                     <p:slider for="txt2" display="output2" minValue="1" maxValue="64" style="width: 100px" displayTemplate="Ilosc Poduszek:{value}" />
 
 
@@ -211,7 +211,7 @@
                                                         mode="advanced"
                                                         fileUploadListener="#{samochodController.handleFileUpload}"
                                                         allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
-                                                        auto="true"/>
+                                                        auto="false"/>
                                                 </h:form>
 
                                             </p:panel>

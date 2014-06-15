@@ -9,10 +9,12 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -31,11 +33,60 @@ import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
 @Named("samochodController")
 @SessionScoped
 public class SamochodController implements Serializable {
+    
+    
 
     @EJB
     private pl.pai2.autorent3.encje.SamochodFacade ejbFacade;
     private List<Samochod> items = null;
     private Samochod selected;
+    private List<String> elementy;
+    private String[] wybraneWyposazenie;
+
+    public List<String> getElementy() {
+        return elementy;
+    }
+
+    public void setElementy(List<String> elementy) {
+        this.elementy = elementy;
+    }
+
+    public String[] getWybraneWyposazenie() {
+        return wybraneWyposazenie;
+    }
+
+    public void setWybraneWyposazenie(String[] wybraneWyposazenie) {
+        this.wybraneWyposazenie = wybraneWyposazenie;
+    }
+    
+    @PostConstruct
+    public void init() {
+        elementy = new ArrayList<String>();
+        elementy.add("Naped 4x4");
+        elementy.add("Centralny zamek");
+        elementy.add("Czujnik deszczu");
+        elementy.add("Czujnik parkowania");
+        elementy.add("Elektryczne lusterka");
+        elementy.add("Elektryczne szyby");
+        elementy.add("Klimatyzacja");
+        elementy.add("Komputer pokładowy");
+        elementy.add("Podgrzewane fotele");
+        elementy.add("Radio");
+        elementy.add("Nawigacja");
+        elementy.add("Skorzana tapicerka");
+        elementy.add("Tempomat");
+        elementy.add("Wspomaganie kierownicy");
+        elementy.add("Auto alarm");
+        elementy.add("Esp");
+        elementy.add("Poduszki powietrzne");
+        elementy.add("Alu felgi");
+        elementy.add("Dodatkowy bagaznik");
+        elementy.add("Hak");
+        elementy.add("Ksenony");
+        elementy.add("Przyciemniane szyby");
+        elementy.add("Szyber dach");
+        elementy.add("Automatyczna skrzynia biegow");   
+    }
 
     public SamochodController() {
     }
@@ -68,6 +119,7 @@ public class SamochodController implements Serializable {
     }
 
     public void create() {
+        stringToElements(wybraneWyposazenie);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SamochodCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -146,6 +198,44 @@ public class SamochodController implements Serializable {
             e.printStackTrace();
         }
     }
+     
+        public void stringToElements(String[] wybrane){
+               
+      
+        for (String tmp : wybrane) {
+            if(tmp.equals(elementy.get(0))) selected.getWyposazenie().setNaped4x4(true);
+            if(tmp.equals(elementy.get(1))) selected.getWyposazenie().setCentralnyZamek(true);
+            if(tmp.equals(elementy.get(2))) selected.getWyposazenie().setCzujnikDeszczu(true);
+            if(tmp.equals(elementy.get(3))) selected.getWyposazenie().setCzujnikParkowania(true);
+            if(tmp.equals(elementy.get(4))) selected.getWyposazenie().setElektrLusterka(true);
+            if(tmp.equals(elementy.get(5))) selected.getWyposazenie().setEleSzyby(true);
+            if(tmp.equals(elementy.get(6))) selected.getWyposazenie().setKilmatyzacja(true);
+            if(tmp.equals(elementy.get(7))) selected.getWyposazenie().setKomputerPokladowy(true);
+            if(tmp.equals(elementy.get(8))) selected.getWyposazenie().setPodgrzFotele(true);
+            if(tmp.equals(elementy.get(9))) selected.getWyposazenie().setRadio(true);
+            if(tmp.equals(elementy.get(10))) selected.getWyposazenie().setNawigacja(true);
+            if(tmp.equals(elementy.get(11))) selected.getWyposazenie().setSkorzanaTapicerka(true);
+            if(tmp.equals(elementy.get(12))) selected.getWyposazenie().setTempomat(true);
+            if(tmp.equals(elementy.get(13))) selected.getWyposazenie().setWspKierownicy(true);
+            if(tmp.equals(elementy.get(14))) selected.getWyposazenie().setAutoAlarm(true);
+            if(tmp.equals(elementy.get(15))) selected.getWyposazenie().setEsp(true);
+            if(tmp.equals(elementy.get(16))) selected.getWyposazenie().setPoduszkiPowietrzne(true);
+            if(tmp.equals(elementy.get(17))) selected.getWyposazenie().setAluFelgi(true);
+            if(tmp.equals(elementy.get(18))) selected.getWyposazenie().setDodatkowyBagaznik(true);
+            if(tmp.equals(elementy.get(19))) selected.getWyposazenie().setHak(true);
+            if(tmp.equals(elementy.get(20))) selected.getWyposazenie().setKsenony(true);
+            if(tmp.equals(elementy.get(21))) selected.getWyposazenie().setPrzycSzyby(true);
+            if(tmp.equals(elementy.get(22))) selected.getWyposazenie().setSzyberDach(true);
+            if(tmp.equals(elementy.get(23))) selected.getWyposazenie().setAutomatycznaSkrzynia(true); 
+        }
+        
+  
+         
+     }
+     
+   
+     
+     
     
  
      

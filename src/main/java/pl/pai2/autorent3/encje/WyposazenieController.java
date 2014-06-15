@@ -4,10 +4,13 @@ import pl.pai2.autorent3.encje.util.JsfUtil;
 import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -25,6 +28,7 @@ public class WyposazenieController implements Serializable {
     private pl.pai2.autorent3.encje.WyposazenieFacade ejbFacade;
     private List<Wyposazenie> items = null;
     private Wyposazenie selected;
+   
 
     public WyposazenieController() {
     }
@@ -54,6 +58,7 @@ public class WyposazenieController implements Serializable {
     }
 
     public void create() {
+        
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("WyposazenieCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -118,6 +123,8 @@ public class WyposazenieController implements Serializable {
     public List<Wyposazenie> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+ 
 
     @FacesConverter(forClass = Wyposazenie.class)
     public static class WyposazenieControllerConverter implements Converter {
@@ -157,6 +164,8 @@ public class WyposazenieController implements Serializable {
                 return null;
             }
         }
+        
+         
 
     }
 

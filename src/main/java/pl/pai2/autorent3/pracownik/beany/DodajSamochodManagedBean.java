@@ -16,7 +16,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 import pl.pai2.autorent3.encje.Samochod;
-import pl.pai2.autorent3.encje.SamochodController;
 import pl.pai2.autorent3.encje.Wyposazenie;
 
 /**
@@ -38,35 +37,7 @@ public class DodajSamochodManagedBean implements Serializable  {
     private List<String> elementy;
     
     
-     @PostConstruct
-    public void init() {
-        elementy = new ArrayList<String>();
-        elementy.add("Naped 4x4");
-        elementy.add("Centralny zamek");
-        elementy.add("Czujnik deszczu");
-        elementy.add("Czujnik parkowania");
-        elementy.add("Elektryczne lusterka");
-        elementy.add("Elektryczne szyby");
-        elementy.add("Klimatyzacja");
-        elementy.add("Komputer pokładowy");
-        elementy.add("Podgrzewane fotele");
-        elementy.add("Radio");
-        elementy.add("Nawigacja");
-        elementy.add("Skorzana tapicerka");
-        elementy.add("Tempomat");
-        elementy.add("Wspomaganie kierownicy");
-        elementy.add("Auto alarm");
-        elementy.add("Esp");
-        elementy.add("Poduszki powietrzne");
-        elementy.add("Alu felgi");
-        elementy.add("Dodatkowy bagaznik");
-        elementy.add("Hak");
-        elementy.add("Ksenony");
-        elementy.add("Przyciemniane szyby");
-        elementy.add("Szyber dach");
-        elementy.add("Automatyczna skrzynia biegow");
-        
-    }
+     
 
     public String[] getWybraneWyposazenie() {
         return wybraneWyposazenie;
