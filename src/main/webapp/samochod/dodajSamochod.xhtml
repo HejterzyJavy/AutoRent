@@ -34,12 +34,12 @@
 
                             <p:panel header="#{car.idSamochod}" style="text-align:center">
                                 <h:panelGrid columns="1" style="width:100%">
-                                    <p:graphicImage  value="../../Zdjecie?id=#{car.idSamochod}"  />
+                                    <p:graphicImage  value="../../Zdjecie?id=#{car.idSamochod}" width="300px" height="200px" />
 
                                     <h:outputText value="#{car.typSamochoduId.marka}" />
                                     <h:outputText value="#{car.typSamochoduId.model}" />
                                     
-                                     <h:outputText  value="http://localhost:8080/autoRent3/Zdjecie?id=#{car.idSamochod}" />
+
 
                                     <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
                                         <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
