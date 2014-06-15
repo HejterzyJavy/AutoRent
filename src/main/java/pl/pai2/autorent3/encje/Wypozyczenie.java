@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.pai2.autorent3.encje;
 
 import java.io.Serializable;
@@ -40,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Wypozyczenie.findByStatus", query = "SELECT w FROM Wypozyczenie w WHERE w.status = :status"),
     @NamedQuery(name = "Wypozyczenie.findByOpis", query = "SELECT w FROM Wypozyczenie w WHERE w.opis = :opis")})
 public class Wypozyczenie implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,6 +68,8 @@ public class Wypozyczenie implements Serializable {
     @JoinColumn(name = "klient_id", referencedColumnName = "id_klient")
     @ManyToOne(optional = false)
     private Klient klientId;
+
+  
 
     public Wypozyczenie() {
     }
@@ -103,6 +105,8 @@ public class Wypozyczenie implements Serializable {
     public Integer getKosztCalkowity() {
         return kosztCalkowity;
     }
+
+   
 
     public void setKosztCalkowity(Integer kosztCalkowity) {
         this.kosztCalkowity = kosztCalkowity;
@@ -172,5 +176,5 @@ public class Wypozyczenie implements Serializable {
     public String toString() {
         return "pl.pai2.autorent3.encje.Wypozyczenie[ idWypozyczenie=" + idWypozyczenie + " ]";
     }
-    
+
 }

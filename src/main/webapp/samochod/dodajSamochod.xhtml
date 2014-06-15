@@ -38,10 +38,10 @@
 
                                     <h:outputText value="#{car.typSamochoduId.marka}" />
                                     <h:outputText value="#{car.typSamochoduId.model}" />
-                                    
 
 
-                                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+
+                                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail" >
                                         <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
                                         <f:setPropertyActionListener value="#{car}" target="#{samochodManagedBean.selectedCar}" />
                                     </p:commandLink>
@@ -84,7 +84,7 @@
 
                                             <p:panel header="Dane">
 
-                                                <h:panelGrid columns="2" columnClasses="label, value">
+                                                <h:panelGrid columns="2" columnClasses="label, value" rendered="#{samochodController.selected != null}">
 
 
 
@@ -107,12 +107,12 @@
 
                                                     <h:outputText value="Lokalizacja: " />
                                                     <p:inputText required="true" label="Lokalizacja" value="#{samochodController.selected.lokalizacja}" />
-                                                    
+
                                                     <p:outputLabel value="Salon:" for="oddzialId" />
                                                     <p:selectOneMenu id="oddzialId" value="#{samochodController.selected.oddzialId}" required="true" requiredMessage="#{bundle.EditSamochodRequiredMessage_oddzialId}">
                                                         <f:selectItems value="#{oddzialController.itemsAvailableSelectOne}"
                                                                        var="oddzialIdItem"
-                                                                       itemLabel="#{oddzialIdItem.nazwa} , #{oddzialIdItem.lokalizacja}"
+                                                                       itemLabel="#{oddzialIdItem.nazwa}"
                                                                        itemValue="#{oddzialIdItem}"
                                                                        />
                                                     </p:selectOneMenu>

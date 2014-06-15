@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <script src="#{resource['js:main.js']}" type="text/javascript"></script>
+    </h:head>
+
+    <body>
+        <p:growl id="growl" life="3000" />
+
+        <ui:composition template="./../template/szablon.xhtml">
+
+
+            <ui:define name="content">
+                <div class='linia'> </div>
+                <div id="srodekNaglowek">
+                    <div id="srodekZnacznik"> </div>
+                    <p>SAMOCHODY</p>
+                </div>
+                <div class='linia'> </div>
+                <div id="srodekTresc">
+
+                    <h:form id="form">
+                        <p:dataGrid var="car" value="#{samochodController.items}" columns="3"
+                                    rows="12" paginator="true" id="cars"
+                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="6,12,16">
+
+                            <f:facet name="header">
+                                Dostępne Samochody
+                            </f:facet>
+
+                            <p:panel header="#{car.typSamochoduId.marka} #{car.typSamochoduId.model}" style="text-align:center">
+                                <h:panelGrid columns="1" style="width:100%">
+                                    <p:commandLink styleClass="przyciskRezerwacji" update=":form:carDetail" oncomplete="PF('SamochodWypozyczDialog').show()" title="View Detail" actionListener="#{samochodController.prepareCreate}" >
+                                        <p:graphicImage  value="../../Zdjecie?id=#{car.idSamochod}" width="300px" height="200px" />
+                                        <f:setPropertyActionListener value="#{car}"  target="#{samochodController.selectedCar}" />
+                                    </p:commandLink>
+
+
+
+                                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail" >
+                                        <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                                        <f:setPropertyActionListener value="#{car}" target="#{samochodController.selectedCar}" />
+                                    </p:commandLink>
+                                </h:panelGrid>
+                            </p:panel>
+
+                        </p:dataGrid>
+
+                        <p:dialog header="Sczegóły" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty samochodController.selectedCar}" columnClasses="label,value">
+
+                                    <h:outputText value="Id:" />
+                                    <h:outputText value="#{samochodController.selectedCar.idSamochod}" />
+
+
+                                    <h:outputText value="Year" />
+                                    <h:outputText value="#{samochodController.selectedCar.typSamochoduId.rokProd}" />
+
+                                    <h:outputText value="Color:" />
+                                    <h:outputText value="#{samochodController.selectedCar.kolor}" style="color:#{samochodController.selectedCar.kolor}"/>
+
+                                    <h:outputText value="Price" />
+                                    <h:outputText value="$#{samochodController.selectedCar.cenaDoba}" />
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
+                    <ui:composition>
+
+                        <p:dialog id="SamochodWypozyczDlg" widgetVar="SamochodWypozyczDialog" modal="true" resizable="false" appendTo="@(body)" header="Wypożycz Samochod">
+                            <h:form id="SamochodWypozyczForm">
+                                <h:panelGroup id="display">
+                                    <p:panel header="Data wypozyczenia i zwrotu">
+
+                                        <h:panelGrid columns="5" columnClasses="label, value">
+                                            <p:outputLabel for="dataWypozyczenia" value="Data wypozyczenia:" />
+                                            <p:calendar id="dataWypozyczenia" value="#{wypozyczenieController.selected.dataWypozyczenia}" mode="inline" >
+                                                <p:ajax event="dateSelect" update="selection"/>
+                                            </p:calendar>
+                                            <h:outputText value=" &nbsp;" />
+
+                                            <p:outputLabel for="dataZarotu" value="Data zwrotu:" />
+                                            <p:calendar id="dataZarotu" value="#{wypozyczenieController.selected.dataZwrotu}" mode="inline" >
+                                                <p:ajax event="dateSelect" update="selection"/>
+                                            </p:calendar>
+
+
+
+
+                                        </h:panelGrid>
+                                    </p:panel>
+
+                                    <p:panel header="Dane wypozyczenia">
+
+                                        <h:panelGrid columns="3" columnClasses="label, value, po">
+
+
+                                            <h:outputText value="Okres wypożyczenia:" />
+                                            <h:outputText value="#{wypozyczenieController.okresWypozyczenia}" id="selection" style="font-weight:bold;font-size: 20px;"/>
+                                            <h:outputText value="dni" />
+
+
+                                            <h:outputText value="Koszt wypożyczenia (24h) :" />
+                                            <h:outputText value=" #{samochodController.selectedCar.cenaDoba} " style="font-weight:bold;font-size: 20px;" />
+                                            <h:outputText value=" zł" />
+                                            
+                                            
+                                            <h:outputText value="Koszt całkowity wypozyczenia :" />
+                                            <h:outputText value=" #{samochodController.selectedCar.cenaDoba} " style="font-weight:bold;font-size: 20px;" />
+                                            <h:outputText value=" zł za 24h" />
+                                             
+
+                                            
+
+                                        </h:panelGrid>
+                                    </p:panel>
+
+
+                                    <p:commandButton actionListener="#{wypozyczenieController.create}" value="#{bundle.Save}" update="display,:form:cars,:growl" oncomplete="handleSubmit(args,'SamochodWypozyczDialog');"/>
+                                    <p:commandButton value="#{bundle.Cancel}" onclick="SamochodWypozyczDialog.hide()"/>
+                                </h:panelGroup>
+                            </h:form>
+                        </p:dialog>
+
+                        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                            <p:panelGrid id="display2" columns="2" columnClasses="label,value">
+                                <h:outputText value="Mask:" />
+                                <h:outputText value="#{calendarView.date9}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:panelGrid>
+                        </p:dialog>
+                                                       
+                            <p:dialog modal="true" widgetVar="dlg" showEffect="fade" hideEffect="fade" header="Selected Colors" resizable="false">
+                                    <h:panelGrid id="grid" columns="2" cellpadding="5">                                                                                
+                                           <h:outputText value="Popup color: " />
+                                            <h:outputText value="#{colorView.colorPopup}" style="background-color: \##{colorView.colorPopup}" />
+                                        </h:panelGrid>
+                              </p:dialog> 
+                        <!--<p:gmap center="22.381542, 22.122893" zoom="5" type="HYBRID" style="width:600px;height:400px" />-->
+
+                    </ui:composition>
+
+                </div>
+            </ui:define>
+
+
+        </ui:composition>
+
+
+    </body>
+</html>

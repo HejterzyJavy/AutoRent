@@ -1,6 +1,5 @@
 package pl.pai2.autorent3.encje;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -20,8 +19,6 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import pl.pai2.autorent3.encje.util.JsfUtil;
 import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
 
@@ -37,6 +34,15 @@ public class SamochodController implements Serializable {
     private Samochod selected;
     private List<String> elementy;
     private String[] wybraneWyposazenie;
+    private Samochod selectedCar;
+
+    public Samochod getSelectedCar() {
+        return selectedCar;
+    }
+
+    public void setSelectedCar(Samochod selectedCar) {
+        this.selectedCar = selectedCar;
+    }
 
     public List<String> getElementy() {
         return elementy;
@@ -87,6 +93,7 @@ public class SamochodController implements Serializable {
     }
 
     public Samochod getSelected() {
+        if(selected == null) return selected = new Samochod();
         return selected;
     }
 
@@ -108,7 +115,6 @@ public class SamochodController implements Serializable {
         selected = new Samochod();
         selected.setTypSamochoduId( new TypSamochodu());
         selected.setWyposazenie(new Wyposazenie());
-      //  selected.setOddzialId(new Oddzial());
         initializeEmbeddableKey();
         return selected;
     }

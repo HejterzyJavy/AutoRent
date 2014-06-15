@@ -6,6 +6,7 @@ import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -25,11 +26,14 @@ public class WypozyczenieController implements Serializable {
     private pl.pai2.autorent3.encje.WypozyczenieFacade ejbFacade;
     private List<Wypozyczenie> items = null;
     private Wypozyczenie selected;
+    private String okresWypozyczenia;
+    private String kosztWypozyczenia;
 
     public WypozyczenieController() {
     }
 
     public Wypozyczenie getSelected() {
+        if(selected == null) return selected = new Wypozyczenie();
         return selected;
     }
 
@@ -77,6 +81,20 @@ public class WypozyczenieController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    
+     public String getOkresWypozyczenia() {
+        if (selected.getDataWypozyczenia() == null || selected.getDataZwrotu()== null) {
+            return ("No date selected.");
+        } else {
+            long diff = selected.getDataZwrotu().getTime() - selected.getDataWypozyczenia().getTime();
+            String message        = String.format("" + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+            return (message);
+        }
+    }
+
+    public void setOkresWypozyczenia(String okresWypozyczenia) {
+        this.okresWypozyczenia = okresWypozyczenia;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
