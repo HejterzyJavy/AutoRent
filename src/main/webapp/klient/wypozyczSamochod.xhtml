@@ -37,9 +37,9 @@
 
                             <p:panel header="#{car.typSamochoduId.marka} #{car.typSamochoduId.model}" style="text-align:center">
                                 <h:panelGrid columns="1" style="width:100%">
-                                    <p:commandLink styleClass="przyciskRezerwacji" update=":form:carDetail" oncomplete="PF('SamochodWypozyczDialog').show()" title="View Detail" actionListener="#{samochodController.prepareCreate}" >
+                                    <p:commandLink styleClass="przyciskRezerwacji" update=":SamochodWypozyczForm:display" oncomplete="PF('SamochodWypozyczDialog').show()" title="View Detail" actionListener="#{wypozyczenieController.prepareCreate}" >
                                         <p:graphicImage  value="../../Zdjecie?id=#{car.idSamochod}" width="300px" height="200px" />
-                                        <f:setPropertyActionListener value="#{car}"  target="#{samochodController.selectedCar}" />
+                                        <f:setPropertyActionListener value="#{car}"  target="#{wypozyczenieController.selected.samochodId}" />
                                     </p:commandLink>
 
 
@@ -78,22 +78,36 @@
                         <p:dialog id="SamochodWypozyczDlg" widgetVar="SamochodWypozyczDialog" modal="true" resizable="false" appendTo="@(body)" header="Wypożycz Samochod">
                             <h:form id="SamochodWypozyczForm">
                                 <h:panelGroup id="display">
-                                    <p:panel header="Data wypozyczenia i zwrotu">
+                                    <p:panel header="Dane Samochodu">
+                                        <p:fieldset legend="#{wypozyczenieController.selected.samochodId.typSamochoduId.marka} #{wypozyczenieController.selected.samochodId.typSamochoduId.model}" style="margin-bottom:20px">
+                                            <h:panelGrid columns="3" cellpadding="5">
+                                                <p:graphicImage  value="../../Zdjecie?id=#{wypozyczenieController.selected.samochodId.idSamochod}" width="450px" height="300px" />
+                                                <p:panel header="Wyposazenie" >
+                                                  <h:panelGrid columns="1" >
+                                                    <ui:include src="Wyposazenie.xhtml"/>
+                                                     </h:panelGrid>
+                                                </p:panel>
+                                            </h:panelGrid>
+                                        </p:fieldset>
+                                    </p:panel>
 
+
+
+
+                                    <p:panel header="Data wypozyczenia i zwrotu">
                                         <h:panelGrid columns="5" columnClasses="label, value">
                                             <p:outputLabel for="dataWypozyczenia" value="Data wypozyczenia:" />
                                             <p:calendar id="dataWypozyczenia" value="#{wypozyczenieController.selected.dataWypozyczenia}" mode="inline" >
                                                 <p:ajax event="dateSelect" update="selection"/>
+                                                <p:ajax event="dateSelect" update="selection2" />
                                             </p:calendar>
                                             <h:outputText value=" &nbsp;" />
 
                                             <p:outputLabel for="dataZarotu" value="Data zwrotu:" />
                                             <p:calendar id="dataZarotu" value="#{wypozyczenieController.selected.dataZwrotu}" mode="inline" >
                                                 <p:ajax event="dateSelect" update="selection"/>
+                                                <p:ajax event="dateSelect" update="selection2"/>
                                             </p:calendar>
-
-
-
 
                                         </h:panelGrid>
                                     </p:panel>
@@ -109,16 +123,13 @@
 
 
                                             <h:outputText value="Koszt wypożyczenia (24h) :" />
-                                            <h:outputText value=" #{samochodController.selectedCar.cenaDoba} " style="font-weight:bold;font-size: 20px;" />
-                                            <h:outputText value=" zł" />
-                                            
-                                            
-                                            <h:outputText value="Koszt całkowity wypozyczenia :" />
-                                            <h:outputText value=" #{samochodController.selectedCar.cenaDoba} " style="font-weight:bold;font-size: 20px;" />
-                                            <h:outputText value=" zł za 24h" />
-                                             
+                                            <h:outputText value=" #{wypozyczenieController.selected.samochodId.cenaDoba} " style="font-weight:bold;font-size: 20px;" />
+                                            <h:outputText value="zł" />
 
-                                            
+
+                                            <h:outputText value="Koszt całkowity wypozyczenia :" />
+                                            <h:outputText value=" #{wypozyczenieController.kosztWypozyczenia}"  id="selection2"  style="font-weight:bold;font-size: 20px;" />
+                                            <h:outputText value="zł" />
 
                                         </h:panelGrid>
                                     </p:panel>

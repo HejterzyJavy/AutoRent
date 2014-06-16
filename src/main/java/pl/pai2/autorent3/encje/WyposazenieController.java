@@ -4,13 +4,10 @@ import pl.pai2.autorent3.encje.util.JsfUtil;
 import pl.pai2.autorent3.encje.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
